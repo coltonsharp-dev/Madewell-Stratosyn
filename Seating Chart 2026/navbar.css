@@ -1,0 +1,721 @@
+/* =========================================================
+   NOTCH RAIL + DRAWER — COMPLETE CSS (POLISHED)
+   Updates included:
+   - Time pill is TWO LINES (HH on top, MM on bottom)
+   - Minutes-left is ONE LINE (horizontal, not stacked)
+   - Keeps your border/button look and prevents width jitter
+
+   IMPORTANT (display-only requirement):
+   CSS cannot split "HHMM" into HH/MM by itself.
+   This CSS supports BOTH split methods:
+     A) data attributes on .tb-timeLine: data-time-h="09" data-time-m="30"
+     B) child spans inside .tb-timeLine: <span class="hh">09</span><span class="mm">30</span>
+
+   If you haven’t added either A or B yet, the pill will still render,
+   but will show whatever text you put inside it (single line).
+========================================================= */
+
+/* =========================
+   NR UI Scoped Wrapper
+========================= */
+[data-nr-ui]{
+  color: var(--nr-text);
+  font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
+[data-nr-ui] *{ box-sizing:border-box; }
+
+:root{
+  --nr-w: 56px;
+  --nr-r: 999px;
+
+  --nr-bg: rgba(8,10,12,.72);
+  --nr-bg2: rgba(0,0,0,.34);
+  --nr-stroke: rgba(255,255,255,.14);
+  --nr-stroke2: rgba(255,255,255,.08);
+  --nr-text: rgba(255,255,255,.92);
+  --nr-muted: rgba(255,255,255,.62);
+  --nr-yellow: #ffd400;
+
+  --nr-blur: 18px;
+  --nr-shadow: 0 18px 45px rgba(0,0,0,.45);
+  --nr-glow: 0 0 0 1px rgba(255,212,0,.16), 0 0 28px rgba(255,212,0,.10);
+  --nr-ease: cubic-bezier(.2,.8,.2,1);
+
+  --nr-drawer-top: 14px;
+  --nr-drawer-right: 14px;
+  --nr-drawer-gap: 12px;
+  --nr-drawer-h: calc(100vh - (var(--nr-drawer-top) * 2));
+  --nr-drawer-radius: 24px;
+
+  /* Accent is mode-aware */
+  --nr-accent: rgba(255,212,0,.35);
+
+  --tb-now: rgba(255,212,0,.55);
+  --tb-next: rgba(255,255,255,.22);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:#070A12;
+  color: var(--nr-text);
+}
+
+/* Keyboard-only focus rings */
+[data-nr-ui] :focus{ outline: none; }
+body.kbd [data-nr-ui] :focus-visible{
+  outline:2px solid rgba(255,212,0,.55);
+  outline-offset:2px;
+}
+body:not(.kbd) [data-nr-ui] :focus{ outline:none; }
+
+/* =========================
+   RAIL (draggable timebar)
+========================= */
+.notch-rail{
+  position: fixed;
+  right: var(--nr-drawer-right);
+  top: 40%;
+  transform: translateY(-50%);
+  width: var(--nr-w);
+  height: auto;
+  border-radius: var(--nr-r);
+  z-index: 9999;
+  overflow: hidden;
+  user-select: none;
+  touch-action: none;
+
+  background:
+    radial-gradient(140px 240px at 20% 10%, rgba(255,255,255,.08), transparent 60%),
+    radial-gradient(160px 260px at 80% 90%, rgba(255,212,0,.10), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01)),
+    linear-gradient(180deg, var(--nr-bg), var(--nr-bg2));
+
+  border: 1px solid var(--nr-stroke);
+  box-shadow: var(--nr-shadow),
+              0 0 0 1px color-mix(in srgb, var(--nr-accent) 35%, transparent),
+              0 0 28px color-mix(in srgb, var(--nr-accent) 22%, transparent);
+  backdrop-filter: blur(var(--nr-blur));
+  -webkit-backdrop-filter: blur(var(--nr-blur));
+}
+@supports not (color-mix(in srgb, red 50%, transparent)){
+  .notch-rail{ box-shadow: var(--nr-shadow), var(--nr-glow); }
+}
+.notch-rail::after{
+  content:"";
+  position:absolute;
+  inset: 1px;
+  border-radius: var(--nr-r);
+  pointer-events:none;
+  border: 1px solid var(--nr-stroke2);
+}
+
+.nr-handle{
+  all: unset;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+}
+.nr-handle:active{cursor: grabbing}
+
+/* Rail content */
+.tb-rail{
+  height: 100%;
+  width: 100%;
+  display: grid;
+
+  /* icon, time, divider, mins, icon, focus buttons */
+  grid-template-rows: 52px 34px 10px auto 52px auto;
+
+  align-items: center;
+  justify-items: center;
+
+  padding: 4px 4px;
+  gap: 4px;
+}
+
+/* Icon rings */
+.tb-nowIcon,.tb-nextIcon{
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(255,255,255,.14);
+  background: color-mix(in srgb, rgba(0,0,0,.35) 78%, var(--tb-now) 22%);
+}
+.tb-nowIcon{ border-color: var(--tb-now); }
+.tb-nextIcon{
+  border-color: var(--tb-next);
+  background: color-mix(in srgb, rgba(0,0,0,.35) 78%, var(--tb-next) 22%);
+}
+@supports not (color-mix(in srgb, red 50%, transparent)){
+  .tb-nowIcon,.tb-nextIcon{ background: rgba(0,0,0,.35); }
+}
+.tb-nowIcon img,.tb-nextIcon img{
+  width: 24px;
+  height: 24px;
+  display:block;
+  object-fit: contain;
+}
+
+.tb-divider{
+  width: 22px;
+  height: 1px;
+  background: rgba(255,255,255,.18);
+  border-radius: 99px;
+  margin: 2px 0;
+}
+
+/* =====================================================
+   TIME PILL — TWO LINES
+   Supports:
+     A) .tb-timeLine[data-time-h][data-time-m]  (preferred)
+     B) .tb-timeLine > .hh and .mm spans
+===================================================== */
+.tb-timeLine{
+  /* pill look */
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.18) inset;
+
+  /* stable sizing: prevents rail reflow */
+  width: 40px;
+  height: 34px;
+  padding: 0;
+
+  /* 2-line layout */
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  place-items: center;
+
+  /* numeric stability */
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.92);
+
+  /* if someone leaves text inside, it won't break the pill */
+  overflow: hidden;
+}
+
+/* A) data-attribute split (no inner spans needed) */
+.tb-timeLine[data-time-h][data-time-m]{
+  /* hide any accidental text node */
+  color: transparent;
+}
+.tb-timeLine[data-time-h][data-time-m]::before,
+.tb-timeLine[data-time-h][data-time-m]::after{
+  display:block;
+  width:100%;
+  text-align:center;
+  line-height:1;
+  color: rgba(255,255,255,.92);
+}
+.tb-timeLine[data-time-h][data-time-m]::before{
+  content: attr(data-time-h);
+  font: 900 12px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
+.tb-timeLine[data-time-h][data-time-m]::after{
+  content: attr(data-time-m);
+  font: 900 11px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  opacity: .78;
+  margin-top: -1px;
+}
+
+/* B) span split */
+.tb-timeLine .hh,
+.tb-timeLine .mm{
+  display:block;
+  width:100%;
+  text-align:center;
+  line-height:1;
+  color: rgba(255,255,255,.92);
+}
+.tb-timeLine .hh{
+  font: 900 12px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
+.tb-timeLine .mm{
+  font: 900 11px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  opacity: .78;
+  margin-top: -1px;
+}
+
+/* =====================================================
+   MINUTES LEFT — ONE LINE (HORIZONTAL)
+===================================================== */
+.tb-digits{
+  display:flex;
+  flex-direction: row;   /* key change */
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+
+  min-height: 18px;      /* keeps rail stable */
+}
+.tb-digits .d{
+  display:inline-block;
+  width: 1ch;
+  text-align:center;
+  font: 900 14px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color: rgba(255,255,255,.88);
+  font-variant-numeric: tabular-nums;
+}
+.tb-mins .d{ color: rgba(255,255,255,.85); }
+
+/* =========================
+   FOCUS MODES (RAIL, icon-only)
+========================= */
+.fp-actions{
+  width: 100%;
+  display: grid;
+  grid-auto-rows: 28px;
+  gap: 6px;
+  padding: 2px 0 6px;
+  justify-items: center;
+  pointer-events: auto;
+}
+
+.fp-action{
+  all: unset;
+  cursor: pointer;
+
+  width: 38px;
+  height: 28px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.22) inset;
+
+  transition: transform .16s var(--nr-ease), background .16s var(--nr-ease), border-color .16s var(--nr-ease);
+  user-select: none;
+}
+.fp-action:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.10);
+}
+.fp-action:active{
+  transform: translateY(0px) scale(.99);
+}
+.fp-action[aria-pressed="true"]{
+  border-color: color-mix(in srgb, var(--nr-accent, rgba(255,212,0,.85)) 60%, rgba(255,255,255,.18));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--nr-accent, rgba(255,212,0,.85)) 55%, transparent),
+    0 0 16px color-mix(in srgb, var(--nr-accent, rgba(255,212,0,.85)) 18%, transparent);
+}
+.fp-ico{
+  font-size: 14px;
+  line-height: 1;
+  transform: translateY(.5px);
+}
+
+/* Mode tints (affects glow + iframe border + buttons) */
+body.mode-live      { --nr-accent: rgba(70, 210, 140, .95); }
+body.mode-planning  { --nr-accent: rgba(255, 212, 0,  .95); }
+body.mode-lecture   { --nr-accent: rgba(120, 170, 255,.95); }
+
+/* =========================
+   DRAWER (body.nr-open is the truth)
+========================= */
+.nr-drawer{
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.nr-drawer-surface{
+  position: absolute;
+  top: var(--nr-drawer-top);
+  right: calc(var(--nr-drawer-right) + var(--nr-w) + var(--nr-drawer-gap));
+  height: var(--nr-drawer-h);
+
+  width: calc(100vw - (var(--nr-drawer-right) + var(--nr-w) + var(--nr-drawer-gap) + var(--nr-drawer-right)));
+  border-radius: var(--nr-drawer-radius);
+  overflow: hidden;
+
+  background:
+    radial-gradient(520px 420px at 15% 10%, rgba(255,255,255,.08), transparent 60%),
+    radial-gradient(520px 420px at 85% 90%, rgba(255,212,0,.10), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.015)),
+    linear-gradient(180deg, rgba(8,10,12,.86), rgba(0,0,0,.48));
+
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 30px 80px rgba(0,0,0,.55), var(--nr-glow);
+  backdrop-filter: blur(var(--nr-blur));
+  -webkit-backdrop-filter: blur(var(--nr-blur));
+
+  opacity: 0;
+  transform: translateX(18px) scale(.985);
+  transition: transform .38s var(--nr-ease), opacity .22s ease;
+}
+
+.nr-drawer-surface::after{
+  content:"";
+  position:absolute;
+  inset: 1px;
+  border-radius: var(--nr-drawer-radius);
+  pointer-events:none;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+body.nr-open .nr-drawer{ pointer-events: auto; }
+body.nr-open .nr-drawer-surface{
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* Header */
+.nr-drawer-head{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.nr-drawer-head::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent, var(--nr-accent), transparent);
+  opacity:.55;
+}
+
+.nr-drawer-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font: 900 14px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
+.nr-dot{
+  width:10px;height:10px;border-radius:999px;
+  background: var(--nr-yellow);
+  box-shadow: 0 0 0 3px rgba(255,212,0,.14);
+}
+
+.nr-drawer-actions{display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end}
+
+.nr-chip{
+  all: unset;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: rgba(255,255,255,.88);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  font: 800 12px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  transition: transform .16s var(--nr-ease), background .16s var(--nr-ease), border-color .16s var(--nr-ease);
+}
+.nr-chip:hover{transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,212,0,.22)}
+.nr-chip-close{color: var(--nr-yellow)}
+
+/* Body */
+.nr-drawer-body{
+  position: relative;
+  z-index: 1;
+  height: calc(var(--nr-drawer-h) - 54px);
+  overflow-y: auto;
+  padding: 14px 14px 18px;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.18) rgba(0,0,0,.18);
+}
+.nr-drawer-body::-webkit-scrollbar{ width: 10px; }
+.nr-drawer-body::-webkit-scrollbar-track{ background: rgba(0,0,0,.18); }
+.nr-drawer-body::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.16);
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,.18);
+}
+.nr-drawer-body::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.24); }
+
+/* Sections */
+.nr-section{
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
+
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+body.nr-open .nr-section{
+  opacity: 1;
+  transform: translateY(0);
+}
+body.nr-open .nr-section:nth-child(1){ transition-delay:.05s }
+body.nr-open .nr-section:nth-child(2){ transition-delay:.10s }
+body.nr-open .nr-section:nth-child(3){ transition-delay:.15s }
+
+.nr-h3{
+  margin: 0 0 12px;
+  font: 900 13px/1.2 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
+
+.nr-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.nr-field{display:grid; gap:6px}
+.nr-field-wide{margin-top:10px}
+.nr-label{
+  font: 900 11px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  letter-spacing:.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.64);
+}
+
+/* Selects */
+.nr-select{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  padding: 10px 38px 10px 14px;
+  border-radius: 12px;
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)),
+    rgba(0,0,0,.45);
+
+  color: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.18);
+
+  font: 800 13px/1.2 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.35) inset,
+    0 8px 22px rgba(0,0,0,.35);
+
+  cursor: pointer;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255,255,255,.72) 50%),
+    linear-gradient(135deg, rgba(255,255,255,.72) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+.nr-select:hover{
+  border-color: rgba(255,212,0,.45);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.04)),
+    rgba(0,0,0,.48);
+}
+.nr-select:focus{
+  outline: none;
+  border-color: var(--nr-accent, rgba(255,212,0,.85));
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--nr-accent, rgba(255,212,0,.85)) 55%, transparent),
+    0 0 0 1px rgba(0,0,0,.35) inset;
+}
+.nr-select option{
+  background: #0b0f14;
+  color: rgba(255,255,255,.92);
+  font-weight: 700;
+}
+@-moz-document url-prefix(){
+  .nr-select option{ background:#0b0f14; color:#fff; }
+}
+
+/* Range row */
+.nr-rangeRow{display:flex; align-items:center; gap: 10px}
+.nr-range{width:100%}
+.nr-rangeVal{
+  min-width: 52px;
+  text-align:center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  font: 900 12px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
+.nr-hint{
+  margin: 8px 0 0;
+  color: rgba(255,255,255,.68);
+  font: 650 12px/1.4 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
+
+/* Jump buttons */
+.nr-jumps{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.nr-jump{
+  all: unset;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.90);
+  font: 850 12px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  transition: transform .16s var(--nr-ease), background .16s var(--nr-ease), border-color .16s var(--nr-ease);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.18) inset;
+}
+.nr-jump:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.10);
+  border-color: color-mix(in srgb, var(--pcol, rgba(255,212,0,.55)) 50%, rgba(255,255,255,.14));
+}
+.nr-jump[aria-current="true"]{
+  border-color: var(--pcol, rgba(255,212,0,.75));
+  box-shadow: 0 0 0 1px var(--pcol, rgba(255,212,0,.75)),
+              0 0 18px color-mix(in srgb, var(--pcol, rgba(255,212,0,.6)) 45%, transparent);
+}
+
+/* Schedule preview */
+.nr-schedule{display:grid; gap:10px}
+.nr-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-left: 4px solid var(--pcol, rgba(255,255,255,.12));
+}
+.nr-left{display:flex; align-items:center; gap:10px; min-width: 190px}
+.nr-badge{
+  width: 34px; height: 34px; border-radius: 999px;
+  display:grid; place-items:center;
+  background: rgba(0,0,0,.35);
+  border: 2px solid var(--pcol, rgba(255,255,255,.18));
+  box-shadow: 0 0 0 1px rgba(0,0,0,.18) inset;
+}
+.nr-badge img{ width:22px; height:22px; display:block; object-fit:contain }
+.nr-period{font: 850 13px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+.nr-time{color: rgba(255,255,255,.72); font: 750 12px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial; white-space:nowrap}
+
+/* Icon Reference Gallery */
+.nr-iconGrid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+.nr-ic{
+  display:grid;
+  grid-template-columns: 44px 1fr;
+  gap:10px;
+  align-items:center;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.nr-ic img{
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  background: rgba(0,0,0,.25);
+  border: 1px solid rgba(255,255,255,.10);
+  object-fit: contain;
+}
+.nr-ic .fn{
+  font: 850 11px/1.2 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color: rgba(255,255,255,.88);
+  word-break: break-word;
+}
+.nr-ic .url{
+  margin-top: 4px;
+  font: 650 10px/1.3 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color: rgba(255,255,255,.62);
+  word-break: break-word;
+}
+
+/* Calendar */
+.nr-cal{
+  width:100%;
+  height:100%;
+  min-height:600px;
+  border-radius:24px;
+  border:1px solid color-mix(in srgb, var(--nr-accent, #ffd400) 45%, rgba(255,255,255,.18));
+  background:
+    radial-gradient(520px 420px at 15% 10%, rgba(255,255,255,.08), transparent 60%),
+    radial-gradient(520px 420px at 85% 90%, color-mix(in srgb, var(--nr-accent, #ffd400) 45%, transparent), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.015)),
+    linear-gradient(180deg, rgba(8,10,12,.86), rgba(0,0,0,.48));
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.55),
+    0 0 0 1px color-mix(in srgb, var(--nr-accent, #ffd400) 35%, transparent),
+    0 0 28px color-mix(in srgb, var(--nr-accent, #ffd400) 28%, transparent),
+    0 0 56px color-mix(in srgb, var(--nr-accent, #ffd400) 14%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow:hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .nr-drawer-surface,.nr-section,.nr-chip,.nr-jump,.nr-select,.fp-action{transition:none!important}
+  .nr-drawer-surface{transform:none!important}
+  .nr-section{transform:none!important}
+}
+
+
+
+/* =====================================================
+   MINUTES LEFT — add the same boxed/pill styling as time
+   Targets the container that holds the digit spans.
+   (Assumes #tbMinsLeft uses class .tb-digits)
+===================================================== */
+
+.tb-digits{
+  /* box / pill look */
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.18) inset;
+
+  /* stable sizing so the rail doesn't jitter */
+  min-width: 40px;     /* fits 1–3 digits comfortably */
+  height: 28px;        /* matches button rhythm */
+  padding: 0 8px;
+
+  /* keep digits centered on one line */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+
+  font-variant-numeric: tabular-nums;
+}
+
+/* digits inside */
+.tb-digits .d{
+  display:inline-block;
+  width: 1ch;
+  text-align:center;
+  font: 900 14px/1 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color: rgba(255,255,255,.88);
+}
+
+/* Optional: make minutes-left subtly “secondary” vs time */
+.tb-digits{
+  opacity: .92;
+}

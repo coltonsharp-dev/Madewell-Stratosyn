@@ -1,0 +1,1016 @@
+{
+  "sourceFile": "AllClassPeriodRoster4152026.pdf",
+  "campus": "ALA Vistancia K-12 Campus",
+  "address": "28800 El Mirage Road, Peoria, AZ 85383",
+  "generatedAt": "2026-04-15T08:22:57",
+  "effectiveDate": "2026-04-15",
+  "teacher": {
+    "name": "Madewell, Chasity",
+    "staffNumber": "QW3005627"
+  },
+  "report": {
+    "courses": 2,
+    "sections": 6
+  },
+  "sections": [
+    {
+      "courseCode": "JR.SC7.22h01-1",
+      "courseTitle": "JR Science 7 Honors - B",
+      "room": "501",
+      "term": "S2",
+      "stateCode": "AZ53237",
+      "period": 1,
+      "schedule": {
+        "fullDay": "08:15AM-09:08AM",
+        "wedHr": "08:15AM-09:05AM",
+        "halfDay": "08:15AM-08:51AM"
+      },
+      "activeStudents": 33,
+      "gradeLevels": "07:33",
+      "students": [
+        {
+          "name": "Allen, Sofia L",
+          "studentNumber": "69028",
+          "grade": "07"
+        },
+        {
+          "name": "Alves, Hudson J",
+          "studentNumber": "71457",
+          "grade": "07"
+        },
+        {
+          "name": "Blair, Lucy",
+          "studentNumber": "73242",
+          "grade": "07"
+        },
+        {
+          "name": "Bryan, Alex X",
+          "studentNumber": "74108",
+          "grade": "07"
+        },
+        {
+          "name": "Carroll, Olivia",
+          "studentNumber": "72203",
+          "grade": "07"
+        },
+        {
+          "name": "Cullimore, Isabelle",
+          "studentNumber": "71578",
+          "grade": "07"
+        },
+        {
+          "name": "DeGruccio, Michelle R",
+          "studentNumber": "75117",
+          "grade": "07"
+        },
+        {
+          "name": "Devendiran, Anicha",
+          "studentNumber": "74951",
+          "grade": "07"
+        },
+        {
+          "name": "Elliott, Kayden",
+          "studentNumber": "71611",
+          "grade": "07"
+        },
+        {
+          "name": "Fields, Harlow S",
+          "studentNumber": "71708",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Halmedi, Emir B",
+          "studentNumber": "73941",
+          "grade": "07",
+          "startDate": "2026-01-19"
+        },
+        {
+          "name": "Hand, Conner J",
+          "studentNumber": "71737",
+          "grade": "07"
+        },
+        {
+          "name": "Hebel, Thomas",
+          "studentNumber": "71745",
+          "grade": "07"
+        },
+        {
+          "name": "Huang, Albert",
+          "studentNumber": "71772",
+          "grade": "07"
+        },
+        {
+          "name": "Karthick, Sahana",
+          "studentNumber": "72088",
+          "grade": "07"
+        },
+        {
+          "name": "LeDuc, Joii N",
+          "studentNumber": "73801",
+          "grade": "07"
+        },
+        {
+          "name": "Lim, Alyssa",
+          "studentNumber": "76341",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Longoria-Solis, Sofia",
+          "studentNumber": "77781",
+          "grade": "07",
+          "startDate": "2026-03-30"
+        },
+        {
+          "name": "Maheshwari, Kashvi",
+          "studentNumber": "75751",
+          "grade": "07"
+        },
+        {
+          "name": "Morcom, Ivy",
+          "studentNumber": "70985",
+          "grade": "07"
+        },
+        {
+          "name": "Morse, Ryder W",
+          "studentNumber": "71897",
+          "grade": "07"
+        },
+        {
+          "name": "Neypes, Juda K",
+          "studentNumber": "75993",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Pauls, Antonio",
+          "studentNumber": "71807",
+          "grade": "07"
+        },
+        {
+          "name": "Satish Reddy, Gattu",
+          "studentNumber": "72369",
+          "grade": "07"
+        },
+        {
+          "name": "Schiefelbein, Madelyn",
+          "studentNumber": "75914",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Schmidt, Norah V",
+          "studentNumber": "53778",
+          "grade": "07"
+        },
+        {
+          "name": "Siaotong, Margaret A",
+          "studentNumber": "75948",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Szager, Emmy E",
+          "studentNumber": "77394",
+          "grade": "07",
+          "startDate": "2026-03-09"
+        },
+        {
+          "name": "Szilagyi, Hyrum S",
+          "studentNumber": "72384",
+          "grade": "07"
+        },
+        {
+          "name": "Trujillo, Suri",
+          "studentNumber": "76800",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Vedire, Sriaikya Reddy",
+          "studentNumber": "72392",
+          "grade": "07"
+        },
+        {
+          "name": "Wall, Aiden",
+          "studentNumber": "72393",
+          "grade": "07"
+        },
+        {
+          "name": "Wong, Kathy G",
+          "studentNumber": "36683",
+          "grade": "07"
+        }
+      ]
+    },
+    {
+      "courseCode": "JR.SC7.22.01-1",
+      "courseTitle": "JR Science 7-B",
+      "room": "501",
+      "term": "S2",
+      "stateCode": "AZ53237",
+      "period": 2,
+      "schedule": {
+        "fullDay": "09:08AM-10:01AM",
+        "wedHr": "09:05AM-10:13AM",
+        "halfDay": "08:51AM-09:27AM"
+      },
+      "activeStudents": 26,
+      "gradeLevels": "07:26",
+      "students": [
+        {
+          "name": "Armstrong, Ethan",
+          "studentNumber": "71461",
+          "grade": "07"
+        },
+        {
+          "name": "Bowen, Emory",
+          "studentNumber": "69698",
+          "grade": "07"
+        },
+        {
+          "name": "Callaway, Peyton M",
+          "studentNumber": "71513",
+          "grade": "07"
+        },
+        {
+          "name": "Corum, Ryder",
+          "studentNumber": "71573",
+          "grade": "07"
+        },
+        {
+          "name": "Dahlin, Skylar",
+          "studentNumber": "71592",
+          "grade": "07"
+        },
+        {
+          "name": "Frank-Doelle, Hallie",
+          "studentNumber": "71715",
+          "grade": "07"
+        },
+        {
+          "name": "Freeman, Mason",
+          "studentNumber": "72046",
+          "grade": "07"
+        },
+        {
+          "name": "Givens, Scarlett J",
+          "studentNumber": "73910",
+          "grade": "07"
+        },
+        {
+          "name": "Kilby, Emerie N",
+          "studentNumber": "71791",
+          "grade": "07"
+        },
+        {
+          "name": "Klein, Hunter J",
+          "studentNumber": "71792",
+          "grade": "07"
+        },
+        {
+          "name": "Krieger, Keira D",
+          "studentNumber": "71795",
+          "grade": "07"
+        },
+        {
+          "name": "Li, Dori",
+          "studentNumber": "71824",
+          "grade": "07"
+        },
+        {
+          "name": "Lyall, K P",
+          "studentNumber": "74727",
+          "grade": "07"
+        },
+        {
+          "name": "Maggi-Early, Matix",
+          "studentNumber": "71853",
+          "grade": "07"
+        },
+        {
+          "name": "Mars, TJ J",
+          "studentNumber": "71866",
+          "grade": "07"
+        },
+        {
+          "name": "Palmo, Lila R",
+          "studentNumber": "69604",
+          "grade": "07"
+        },
+        {
+          "name": "Pogharian, Viggo",
+          "studentNumber": "72362",
+          "grade": "07"
+        },
+        {
+          "name": "Postl, Brent",
+          "studentNumber": "77021",
+          "grade": "07",
+          "startDate": "2026-01-20"
+        },
+        {
+          "name": "Pratt, Aiden J",
+          "studentNumber": "74226",
+          "grade": "07"
+        },
+        {
+          "name": "Stephenson, Brae",
+          "studentNumber": "72382",
+          "grade": "07"
+        },
+        {
+          "name": "Thompson, Kaitlyn",
+          "studentNumber": "77022",
+          "grade": "07",
+          "startDate": "2026-01-20"
+        },
+        {
+          "name": "Traverse, Landon",
+          "studentNumber": "72389",
+          "grade": "07"
+        },
+        {
+          "name": "Tuck, Tommy T",
+          "studentNumber": "74648",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Walker, Hez M",
+          "studentNumber": "76092",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Wu, Allison",
+          "studentNumber": "74355",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Zahariades, Bobby G",
+          "studentNumber": "76116",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        }
+      ]
+    },
+    {
+      "courseCode": "JR.SC7.22.01-103",
+      "courseTitle": "JR Science 7-B",
+      "room": "501",
+      "term": "S2",
+      "stateCode": "AZ53237",
+      "period": 3,
+      "schedule": {
+        "fullDay": "10:01AM-10:54AM",
+        "wedHr": "10:13AM-11:03AM",
+        "halfDay": "09:27AM-10:03AM"
+      },
+      "activeStudents": 31,
+      "gradeLevels": "07:31",
+      "students": [
+        {
+          "name": "Abarca, Bentley",
+          "studentNumber": "71186",
+          "grade": "07"
+        },
+        {
+          "name": "Bennett, Adelyn",
+          "studentNumber": "73742",
+          "grade": "07"
+        },
+        {
+          "name": "Brooks, Boston",
+          "studentNumber": "71507",
+          "grade": "07"
+        },
+        {
+          "name": "Christenson, Huddy",
+          "studentNumber": "72204",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Cook, Mckenna N",
+          "studentNumber": "71568",
+          "grade": "07"
+        },
+        {
+          "name": "Coronado, Zoe M",
+          "studentNumber": "73958",
+          "grade": "07"
+        },
+        {
+          "name": "Corrales, April",
+          "studentNumber": "71572",
+          "grade": "07"
+        },
+        {
+          "name": "Espinoza, Diego E",
+          "studentNumber": "71612",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Hapkowskyj, Daniella C",
+          "studentNumber": "72288",
+          "grade": "07"
+        },
+        {
+          "name": "Herrera, Ryder",
+          "studentNumber": "71748",
+          "grade": "07"
+        },
+        {
+          "name": "Herring, Alex C",
+          "studentNumber": "71754",
+          "grade": "07"
+        },
+        {
+          "name": "Hilger, Kinley",
+          "studentNumber": "71761",
+          "grade": "07"
+        },
+        {
+          "name": "Huang, Erica",
+          "studentNumber": "71774",
+          "grade": "07"
+        },
+        {
+          "name": "Kincaid, Austin J",
+          "studentNumber": "75321",
+          "grade": "07",
+          "startDate": "2026-01-22"
+        },
+        {
+          "name": "Lynn, Austin",
+          "studentNumber": "71848",
+          "grade": "07"
+        },
+        {
+          "name": "Maycock, Wyatt",
+          "studentNumber": "71876",
+          "grade": "07"
+        },
+        {
+          "name": "McWilliams, Piper",
+          "studentNumber": "71880",
+          "grade": "07"
+        },
+        {
+          "name": "Miller, Kora M",
+          "studentNumber": "76431",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Miranda, Jocelyn H",
+          "studentNumber": "74517",
+          "grade": "07"
+        },
+        {
+          "name": "Morris, Tristan",
+          "studentNumber": "76543",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Moss, Adam",
+          "studentNumber": "74953",
+          "grade": "07"
+        },
+        {
+          "name": "Perry, Adalynn",
+          "studentNumber": "72114",
+          "grade": "07"
+        },
+        {
+          "name": "Powers, Natasha K",
+          "studentNumber": "53997",
+          "grade": "07"
+        },
+        {
+          "name": "Riccelli, Nic, Nikki S",
+          "studentNumber": "71414",
+          "grade": "07"
+        },
+        {
+          "name": "Siguenza, Olivia J",
+          "studentNumber": "72375",
+          "grade": "07"
+        },
+        {
+          "name": "Sorensen, Summer",
+          "studentNumber": "72379",
+          "grade": "07"
+        },
+        {
+          "name": "Swartwout, Khloe C",
+          "studentNumber": "75615",
+          "grade": "07"
+        },
+        {
+          "name": "Taylor, Keith",
+          "studentNumber": "75816",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Tintle, Nash",
+          "studentNumber": "72388",
+          "grade": "07"
+        },
+        {
+          "name": "Womboldt, Logan L",
+          "studentNumber": "72397",
+          "grade": "07"
+        },
+        {
+          "name": "Zahlmann, Jax",
+          "studentNumber": "72398",
+          "grade": "07"
+        }
+      ]
+    },
+    {
+      "courseCode": "JR.SC7.22.01-4",
+      "courseTitle": "JR Science 7-B",
+      "room": "501",
+      "term": "S2",
+      "stateCode": "AZ53237",
+      "period": 4,
+      "schedule": {
+        "fullDay": "10:54AM-11:47AM",
+        "wedHr": "11:03AM-11:53AM",
+        "halfDay": "10:03AM-10:39AM"
+      },
+      "activeStudents": 26,
+      "gradeLevels": "07:26",
+      "students": [
+        {
+          "name": "Anderson, Zachary I",
+          "studentNumber": "74231",
+          "grade": "07"
+        },
+        {
+          "name": "Ayala, Callie",
+          "studentNumber": "71462",
+          "grade": "07"
+        },
+        {
+          "name": "Baker, Luke",
+          "studentNumber": "75378",
+          "grade": "07"
+        },
+        {
+          "name": "Banton, Kaylie A",
+          "studentNumber": "75433",
+          "grade": "07"
+        },
+        {
+          "name": "Basulto, Mia B",
+          "studentNumber": "54238",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Burke, Addie",
+          "studentNumber": "74304",
+          "grade": "07"
+        },
+        {
+          "name": "Casartelli, Maxwell M",
+          "studentNumber": "71535",
+          "grade": "07"
+        },
+        {
+          "name": "Chen, Pinghung",
+          "studentNumber": "77478",
+          "grade": "07",
+          "startDate": "2026-03-24"
+        },
+        {
+          "name": "Dunklin, Zac",
+          "studentNumber": "75451",
+          "grade": "07"
+        },
+        {
+          "name": "Hill, Marquez",
+          "studentNumber": "77203",
+          "grade": "07",
+          "startDate": "2026-04-13"
+        },
+        {
+          "name": "Huang, Shinyao",
+          "studentNumber": "74154",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Igoe, Liam",
+          "studentNumber": "71775",
+          "grade": "07"
+        },
+        {
+          "name": "Jimenez, Carlo E",
+          "studentNumber": "71777",
+          "grade": "07"
+        },
+        {
+          "name": "Kemnitz, Connor  J",
+          "studentNumber": "74286",
+          "grade": "07"
+        },
+        {
+          "name": "Larson, Logan",
+          "studentNumber": "71802",
+          "grade": "07"
+        },
+        {
+          "name": "Ochoa, Jayden T",
+          "studentNumber": "75701",
+          "grade": "07"
+        },
+        {
+          "name": "Peiffer, Wesley",
+          "studentNumber": "72112",
+          "grade": "07"
+        },
+        {
+          "name": "Pembarthi, Vaishant S",
+          "studentNumber": "75032",
+          "grade": "07"
+        },
+        {
+          "name": "Peter, Nick",
+          "studentNumber": "76929",
+          "grade": "07",
+          "startDate": "2026-01-07"
+        },
+        {
+          "name": "Scheirer, Grace",
+          "studentNumber": "70738",
+          "grade": "07"
+        },
+        {
+          "name": "Schroeder, Jax D",
+          "studentNumber": "74848",
+          "grade": "07"
+        },
+        {
+          "name": "Schwagerman, Blake R",
+          "studentNumber": "75186",
+          "grade": "07"
+        },
+        {
+          "name": "Shepherd, Gallagher",
+          "studentNumber": "75185",
+          "grade": "07"
+        },
+        {
+          "name": "Smith, Evey C",
+          "studentNumber": "69197",
+          "grade": "07"
+        },
+        {
+          "name": "Tanzer, Jack L",
+          "studentNumber": "76296",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Wallace, Xavier I",
+          "studentNumber": "73745",
+          "grade": "07"
+        }
+      ]
+    },
+    {
+      "courseCode": "JR.SC7.22.01-3",
+      "courseTitle": "JR Science 7-B",
+      "room": "501",
+      "term": "S2",
+      "stateCode": "AZ53237",
+      "period": 5,
+      "schedule": {
+        "fullDay": "11:47AM-1:11PM",
+        "wedHr": "11:53AM-1:15PM",
+        "halfDay": "10:39AM-11:48AM"
+      },
+      "activeStudents": 24,
+      "gradeLevels": "07:24",
+      "students": [
+        {
+          "name": "Beck, Legend Q",
+          "studentNumber": "71473",
+          "grade": "07"
+        },
+        {
+          "name": "Biggs, Sean L",
+          "studentNumber": "50217",
+          "grade": "07",
+          "startDate": "2026-02-23"
+        },
+        {
+          "name": "Caputo, Joseph V",
+          "studentNumber": "75118",
+          "grade": "07"
+        },
+        {
+          "name": "Cerda, Cc S",
+          "studentNumber": "70376",
+          "grade": "07"
+        },
+        {
+          "name": "Chang, To-Lin",
+          "studentNumber": "71651",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Cochran, Owen",
+          "studentNumber": "71546",
+          "grade": "07"
+        },
+        {
+          "name": "Hall, Kenny R",
+          "studentNumber": "72094",
+          "grade": "07"
+        },
+        {
+          "name": "Harris, Savannah",
+          "studentNumber": "73744",
+          "grade": "07"
+        },
+        {
+          "name": "Johnson, Preston M",
+          "studentNumber": "73865",
+          "grade": "07"
+        },
+        {
+          "name": "Kadosh, Liviya",
+          "studentNumber": "72012",
+          "grade": "07"
+        },
+        {
+          "name": "Kormoh, Jibril",
+          "studentNumber": "71018",
+          "grade": "07"
+        },
+        {
+          "name": "Kreick, Sidra",
+          "studentNumber": "61364",
+          "grade": "07"
+        },
+        {
+          "name": "Lillie, Harper",
+          "studentNumber": "75029",
+          "grade": "07"
+        },
+        {
+          "name": "Longstein, Emma J",
+          "studentNumber": "70577",
+          "grade": "07"
+        },
+        {
+          "name": "Lorts, Tegan",
+          "studentNumber": "71847",
+          "grade": "07"
+        },
+        {
+          "name": "Montgomery, Austin C",
+          "studentNumber": "71649",
+          "grade": "07"
+        },
+        {
+          "name": "Pierce, Abby G",
+          "studentNumber": "72361",
+          "grade": "07"
+        },
+        {
+          "name": "Spencer, Logan",
+          "studentNumber": "76873",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Steele, Danny",
+          "studentNumber": "72380",
+          "grade": "07"
+        },
+        {
+          "name": "Suvanto, Lilah",
+          "studentNumber": "72037",
+          "grade": "07"
+        },
+        {
+          "name": "Tucker, Lucy P",
+          "studentNumber": "72390",
+          "grade": "07"
+        },
+        {
+          "name": "Vikram, Nishita",
+          "studentNumber": "75250",
+          "grade": "07"
+        },
+        {
+          "name": "Wilson, Millie",
+          "studentNumber": "78277",
+          "grade": "07",
+          "startDate": "2026-04-08"
+        },
+        {
+          "name": "Woods, Keola E",
+          "studentNumber": "78635",
+          "grade": "07",
+          "startDate": "2026-04-14"
+        }
+      ]
+    },
+    {
+      "courseCode": "JR.SC7.22.01-106",
+      "courseTitle": "JR Science 7-B",
+      "room": "501",
+      "term": "S2",
+      "stateCode": "AZ53237",
+      "period": 6,
+      "schedule": {
+        "fullDay": "1:11PM-2:03PM",
+        "wedHr": "1:15PM-2:05PM",
+        "halfDay": "11:48AM-12:24PM"
+      },
+      "activeStudents": 32,
+      "gradeLevels": "07:32",
+      "students": [
+        {
+          "name": "Babar, Haris A",
+          "studentNumber": "71463",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Beals, Talon",
+          "studentNumber": "71468",
+          "grade": "07"
+        },
+        {
+          "name": "Brooks, Rocky M",
+          "studentNumber": "52147",
+          "grade": "07"
+        },
+        {
+          "name": "Campbell, Deborah G",
+          "studentNumber": "54056",
+          "grade": "07"
+        },
+        {
+          "name": "Cowie, Faith S",
+          "studentNumber": "61800",
+          "grade": "07"
+        },
+        {
+          "name": "Crowner, Sophia G",
+          "studentNumber": "76511",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Dahl, Grace M",
+          "studentNumber": "71580",
+          "grade": "07"
+        },
+        {
+          "name": "Deehr, Cameron",
+          "studentNumber": "74518",
+          "grade": "07"
+        },
+        {
+          "name": "Fielden, Grayson M",
+          "studentNumber": "63131",
+          "grade": "07"
+        },
+        {
+          "name": "Gavino Ruiz, Guillermo",
+          "studentNumber": "70435",
+          "grade": "07"
+        },
+        {
+          "name": "Gordon, Rey E",
+          "studentNumber": "53672",
+          "grade": "07"
+        },
+        {
+          "name": "Hazelett, Masyn T",
+          "studentNumber": "71744",
+          "grade": "07"
+        },
+        {
+          "name": "Holland, Aubrey J",
+          "studentNumber": "53894",
+          "grade": "07"
+        },
+        {
+          "name": "Jones-Lynn, Bryson",
+          "studentNumber": "74152",
+          "grade": "07"
+        },
+        {
+          "name": "Kent, Ivy",
+          "studentNumber": "74065",
+          "grade": "07"
+        },
+        {
+          "name": "Kilborn, Hunter J",
+          "studentNumber": "76825",
+          "grade": "07",
+          "startDate": "2026-01-21"
+        },
+        {
+          "name": "Kuraya, Harley",
+          "studentNumber": "71799",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "name": "Lebers, GG G",
+          "studentNumber": "73741",
+          "grade": "07"
+        },
+        {
+          "name": "Lienhart, Avarie L",
+          "studentNumber": "77071",
+          "grade": "07",
+          "startDate": "2026-01-20"
+        },
+        {
+          "name": "Lindmark, Hayden C",
+          "studentNumber": "71841",
+          "grade": "07"
+        },
+        {
+          "name": "Lopez, Sammy A",
+          "studentNumber": "75212",
+          "grade": "07"
+        },
+        {
+          "name": "Luna, Destiny L",
+          "studentNumber": "74151",
+          "grade": "07"
+        },
+        {
+          "name": "Malone, Breanna",
+          "studentNumber": "71859",
+          "grade": "07"
+        },
+        {
+          "name": "Martinez, Tatum G",
+          "studentNumber": "75145",
+          "grade": "07"
+        },
+        {
+          "name": "Monti, Violet A",
+          "studentNumber": "71895",
+          "grade": "07"
+        },
+        {
+          "name": "Mrgudich, Nathan S",
+          "studentNumber": "72084",
+          "grade": "07"
+        },
+        {
+          "name": "Nickels, Sean M",
+          "studentNumber": "74234",
+          "grade": "07"
+        },
+        {
+          "name": "Peterson, Rae-Lynn R",
+          "studentNumber": "72358",
+          "grade": "07"
+        },
+        {
+          "name": "Riley, Nora",
+          "studentNumber": "72366",
+          "grade": "07"
+        },
+        {
+          "name": "Simpson, Ben",
+          "studentNumber": "72377",
+          "grade": "07"
+        },
+        {
+          "name": "Wei, RuiTing",
+          "studentNumber": "72394",
+          "grade": "07"
+        },
+        {
+          "name": "Wenndt, Josephine",
+          "studentNumber": "72395",
+          "grade": "07"
+        }
+      ]
+    }
+  ]
+}

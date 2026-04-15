@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seating Chart Viewer</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --accent: #2563eb;
+      --desk: #ffffff;
+      --desk-border: #374151;
+      --teacher: #fef3c7;
+      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .app {
+      padding: 20px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .controls {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .controls-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      min-width: 220px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    select, input {
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 14px;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .meta strong { color: var(--ink); }
+
+    .layout-wrap {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .room {
+      position: relative;
+      width: 1280px;
+      height: 880px;
+      margin: 0 auto;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          #ffffff 0,
+          #ffffff 35px,
+          #eef2f7 36px
+        );
+      border: 2px solid #111827;
+      border-radius: 18px;
+    }
+
+    .teacher-desk {
+      position: absolute;
+      width: 110px;
+      height: 170px;
+      left: 30px;
+      bottom: 40px;
+      background: var(--teacher);
+      border: 2px solid var(--desk-border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #92400e;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .table-group {
+      position: absolute;
+      width: 170px;
+      height: 140px;
+    }
+
+    .table-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    .seat {
+      border: 2px solid var(--desk-border);
+      background: var(--desk);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6px;
+      font-size: 14px;
+      line-height: 1.15;
+      font-weight: 700;
+      overflow: hidden;
+    }
+
+    .seat.empty {
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    .seat.unmatched {
+      background: #fff7ed;
+    }
+
+    .seat.highlight {
+      outline: 4px solid var(--accent);
+      z-index: 2;
+    }
+
+    .seat small {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .dot.warn { background: #fff7ed; }
+    .dot.focus { background: #dbeafe; }
+
+    .roster {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .roster h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+    }
+
+    .roster-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #fff;
+      font-size: 14px;
+    }
+
+    .roster-card strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .roster-card.matched {
+      border-color: #bfdbfe;
+      background: #f8fbff;
+    }
+
+    .roster-card.unplaced {
+      border-color: #fed7aa;
+      background: #fff7ed;
+    }
+
+    @media (max-width: 900px) {
+      .app { padding: 12px; }
+      .layout-wrap { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="controls">
+      <div class="controls-top">
+        <div class="field">
+          <label for="sectionSelect">Class Section</label>
+          <select id="sectionSelect"></select>
+        </div>
+        <div class="field">
+          <label for="studentSearch">Find Student</label>
+          <input id="studentSearch" type="text" placeholder="Type a first or last name" />
+        </div>
+      </div>
+      <div class="meta" id="sectionMeta"></div>
+      <div class="legend">
+        <span><i class="dot"></i> matched seat</span>
+        <span><i class="dot warn"></i> unresolved / manual check</span>
+        <span><i class="dot focus"></i> search highlight</span>
+      </div>
+    </section>
+
+    <section class="layout-wrap">
+      <div class="room" id="room">
+        <div class="teacher-desk">Madewell</div>
+      </div>
+    </section>
+
+    <section class="roster">
+      <h2>Unplaced or unmatched students</h2>
+      <div class="roster-grid" id="rosterGrid"></div>
+    </section>
+  </div>
+
+  <script>
+    // Paste your Infinite Campus JSON here as-is.
+    // Do not edit the structure.
+    const rosterData = {
+      "sourceFile": "AllClassPeriodRoster4152026.pdf",
+      "campus": "ALA Vistancia K-12 Campus",
+      "address": "28800 El Mirage Road, Peoria, AZ 85383",
+      "generatedAt": "2026-04-15T08:22:57",
+      "effectiveDate": "2026-04-15",
+      "teacher": {
+        "name": "Madewell, Chasity",
+        "staffNumber": "QW3005627"
+      },
+      "report": {
+        "courses": 2,
+        "sections": 6
+      },
+      "sections": []
+    };
+
+    // Load your JSON into rosterData.sections.
+    // For now, this app includes the fixed layout and matching logic only.
+
+    // Fixed seating layout from the image. This is separate from roster JSON.
+    const fixedLayouts = {
+      1: {
+        roomLabel: 'Period 1 Fixed Layout',
+        tables: [
+          { tableId: 'T1', x: 90,  y: 70,  seats: ['Harlow', 'Antonio', 'Maddy', 'Alyssa'] },
+          { tableId: 'T2', x: 390, y: 70,  seats: ['', 'Norah', 'Ivy', 'Kashvi'] },
+          { tableId: 'T3', x: 690, y: 70,  seats: ['Alex', 'Michelle', 'UNKNOWN', 'Conner'] },
+          { tableId: 'T4', x: 90,  y: 280, seats: ['Margaret', 'Kayden', 'Juda', ''] },
+          { tableId: 'T5', x: 390, y: 280, seats: ['Olivia', 'Albert', 'Ryder', 'Kathy'] },
+          { tableId: 'T6', x: 690, y: 280, seats: ['Sofia L', 'Sahana', 'Lucy', 'Thomas'] },
+          { tableId: 'T7', x: 90,  y: 500, seats: ['Hudson', 'Isabelle', 'Joii', 'Anicha'] },
+          { tableId: 'T8', x: 390, y: 500, seats: ['Sriaikya', 'Sofia A', 'Aiden', 'Emir'] },
+          { tableId: 'T9', x: 820, y: 620, seats: ['Hyrum', 'Suri', 'Emmy', 'Krish'] }
+        ]
+      }
+    };
+
+    const aliases = {
+      'maddy': ['madelyn', 'schiefelbein'],
+      'alyssa': ['alyssa', 'lim'],
+      'norah': ['norah', 'schmidt'],
+      'ivy': ['ivy', 'morcom'],
+      'kashvi': ['kashvi', 'maheshwari'],
+      'alex': ['alex', 'bryan'],
+      'michelle': ['michelle', 'degruccio'],
+      'conner': ['conner', 'hand'],
+      'margaret': ['margaret', 'siaotong'],
+      'kayden': ['kayden', 'elliott'],
+      'juda': ['juda', 'neypes'],
+      'olivia': ['olivia', 'carroll'],
+      'albert': ['albert', 'huang'],
+      'ryder': ['ryder', 'morse'],
+      'kathy': ['kathy', 'wong'],
+      'sofia l': ['sofia l', 'allen'],
+      'sahana': ['sahana', 'karthick'],
+      'lucy': ['lucy', 'blair'],
+      'thomas': ['thomas', 'hebel'],
+      'hudson': ['hudson', 'alves'],
+      'isabelle': ['isabelle', 'cullimore'],
+      'joii': ['joii', 'leduc'],
+      'anicha': ['anicha', 'devendiran'],
+      'sriaikya': ['sriaikya', 'vedire'],
+      'sofia a': ['sofia', 'longoria-solis'],
+      'aiden': ['aiden', 'wall'],
+      'emir': ['emir', 'halmedi'],
+      'hyrum': ['hyrum', 'szilagyi'],
+      'suri': ['suri', 'trujillo'],
+      'emmy': ['emmy', 'szager'],
+      'krish': ['gattu', 'satish', 'reddy']
+    };
+
+    // DEMO DATA: remove this when you paste your real JSON sections in above.
+    if (rosterData.sections.length === 0) {
+      rosterData.sections = [
+        {
+          courseCode: 'JR.SC7.22h01-1',
+          courseTitle: 'JR Science 7 Honors - B',
+          room: '501',
+          term: 'S2',
+          stateCode: 'AZ53237',
+          period: 1,
+          schedule: {
+            fullDay: '08:15AM-09:08AM',
+            wedHr: '08:15AM-09:05AM',
+            halfDay: '08:15AM-08:51AM'
+          },
+          activeStudents: 33,
+          students: [
+            { name: 'Allen, Sofia L', studentNumber: '69028', grade: '07' },
+            { name: 'Alves, Hudson J', studentNumber: '71457', grade: '07' },
+            { name: 'Blair, Lucy', studentNumber: '73242', grade: '07' },
+            { name: 'Bryan, Alex X', studentNumber: '74108', grade: '07' },
+            { name: 'Carroll, Olivia', studentNumber: '72203', grade: '07' },
+            { name: 'Cullimore, Isabelle', studentNumber: '71578', grade: '07' },
+            { name: 'DeGruccio, Michelle R', studentNumber: '75117', grade: '07' },
+            { name: 'Devendiran, Anicha', studentNumber: '74951', grade: '07' },
+            { name: 'Elliott, Kayden', studentNumber: '71611', grade: '07' },
+            { name: 'Fields, Harlow S', studentNumber: '71708', grade: '07' },
+            { name: 'Halmedi, Emir B', studentNumber: '73941', grade: '07' },
+            { name: 'Hand, Conner J', studentNumber: '71737', grade: '07' },
+            { name: 'Hebel, Thomas', studentNumber: '71745', grade: '07' },
+            { name: 'Huang, Albert', studentNumber: '71772', grade: '07' },
+            { name: 'Karthick, Sahana', studentNumber: '72088', grade: '07' },
+            { name: 'LeDuc, Joii N', studentNumber: '73801', grade: '07' },
+            { name: 'Lim, Alyssa', studentNumber: '76341', grade: '07' },
+            { name: 'Longoria-Solis, Sofia', studentNumber: '77781', grade: '07' },
+            { name: 'Maheshwari, Kashvi', studentNumber: '75751', grade: '07' },
+            { name: 'Morcom, Ivy', studentNumber: '70985', grade: '07' },
+            { name: 'Morse, Ryder W', studentNumber: '71897', grade: '07' },
+            { name: 'Neypes, Juda K', studentNumber: '75993', grade: '07' },
+            { name: 'Pauls, Antonio', studentNumber: '71807', grade: '07' },
+            { name: 'Satish Reddy, Gattu', studentNumber: '72369', grade: '07' },
+            { name: 'Schiefelbein, Madelyn', studentNumber: '75914', grade: '07' },
+            { name: 'Schmidt, Norah V', studentNumber: '53778', grade: '07' },
+            { name: 'Siaotong, Margaret A', studentNumber: '75948', grade: '07' },
+            { name: 'Szager, Emmy E', studentNumber: '77394', grade: '07' },
+            { name: 'Szilagyi, Hyrum S', studentNumber: '72384', grade: '07' },
+            { name: 'Trujillo, Suri', studentNumber: '76800', grade: '07' },
+            { name: 'Vedire, Sriaikya Reddy', studentNumber: '72392', grade: '07' },
+            { name: 'Wall, Aiden', studentNumber: '72393', grade: '07' },
+            { name: 'Wong, Kathy G', studentNumber: '36683', grade: '07' }
+          ]
+        }
+      ];
+    }
+
+    const sectionSelect = document.getElementById('sectionSelect');
+    const sectionMeta = document.getElementById('sectionMeta');
+    const room = document.getElementById('room');
+    const rosterGrid = document.getElementById('rosterGrid');
+    const studentSearch = document.getElementById('studentSearch');
+
+    function normalize(value) {
+      return String(value || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function splitName(fullName) {
+      const [last = '', firstPart = ''] = fullName.split(',').map(s => s.trim());
+      const firstTokens = firstPart.split(' ').filter(Boolean);
+      return {
+        full: fullName,
+        last,
+        first: firstTokens[0] || '',
+        rest: firstTokens.slice(1).join(' '),
+        normalizedFull: normalize(fullName),
+        normalizedFirst: normalize(firstTokens[0] || ''),
+        normalizedLast: normalize(last)
+      };
+    }
+
+    function findMatch(seatLabel, students, usedNumbers) {
+      if (!seatLabel || seatLabel === 'UNKNOWN') return null;
+
+      const key = normalize(seatLabel);
+      const tokens = aliases[key] || [key];
+
+      for (const student of students) {
+        if (usedNumbers.has(student.studentNumber)) continue;
+        const parsed = splitName(student.name);
+        const haystack = [parsed.normalizedFirst, parsed.normalizedLast, parsed.normalizedFull].join(' ');
+        const matched = tokens.every(token => haystack.includes(normalize(token))) ||
+                        tokens.some(token => haystack.includes(normalize(token)));
+        if (matched) return student;
+      }
+
+      return null;
+    }
+
+    function getCurrentSection() {
+      const idx = Number(sectionSelect.value || 0);
+      return rosterData.sections[idx];
+    }
+
+    function renderSections() {
+      sectionSelect.innerHTML = '';
+      rosterData.sections.forEach((section, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = `Period ${section.period} - ${section.courseTitle}`;
+        sectionSelect.appendChild(option);
+      });
+    }
+
+    function renderRoom() {
+      const existing = room.querySelectorAll('.table-group');
+      existing.forEach(node => node.remove());
+
+      const section = getCurrentSection();
+      if (!section) return;
+
+      const layout = fixedLayouts[section.period];
+      sectionMeta.innerHTML = `
+        <span><strong>Teacher:</strong> ${rosterData.teacher.name}</span>
+        <span><strong>Room:</strong> ${section.room}</span>
+        <span><strong>Course Code:</strong> ${section.courseCode}</span>
+        <span><strong>Students:</strong> ${section.activeStudents}</span>
+        <span><strong>Schedule:</strong> ${section.schedule.fullDay}</span>
+      `;
+
+      if (!layout) {
+        rosterGrid.innerHTML = '<div class="roster-card unplaced">No fixed layout has been defined for this period yet.</div>';
+        return;
+      }
+
+      const usedNumbers = new Set();
+      const matchedNumbers = new Set();
+      const seatNodes = [];
+
+      layout.tables.forEach(table => {
+        const wrap = document.createElement('div');
+        wrap.className = 'table-group';
+        wrap.style.left = `${table.x}px`;
+        wrap.style.top = `${table.y}px`;
+
+        const grid = document.createElement('div');
+        grid.className = 'table-grid';
+
+        table.seats.forEach((seatLabel, seatIndex) => {
+          const seat = document.createElement('div');
+          seat.className = 'seat';
+
+          if (!seatLabel) {
+            seat.classList.add('empty');
+            seat.textContent = 'Empty';
+          } else if (seatLabel === 'UNKNOWN') {
+            seat.classList.add('unmatched');
+            seat.innerHTML = `Manual Check<small>${table.tableId} seat ${seatIndex + 1}</small>`;
+          } else {
+            const match = findMatch(seatLabel, section.students, usedNumbers);
+            if (match) {
+              usedNumbers.add(match.studentNumber);
+              matchedNumbers.add(match.studentNumber);
+              const parsed = splitName(match.name);
+              seat.innerHTML = `${parsed.first}<small>${parsed.last} | #${match.studentNumber} | ${table.tableId}</small>`;
+              seat.dataset.search = `${match.name} ${match.studentNumber} ${parsed.first} ${parsed.last}`.toLowerCase();
+            } else {
+              seat.classList.add('unmatched');
+              seat.innerHTML = `${seatLabel}<small>Not matched in roster | ${table.tableId}</small>`;
+              seat.dataset.search = seatLabel.toLowerCase();
+            }
+          }
+
+          grid.appendChild(seat);
+          seatNodes.push(seat);
+        });
+
+        wrap.appendChild(grid);
+        room.appendChild(wrap);
+      });
+
+      const unplaced = section.students.filter(student => !matchedNumbers.has(student.studentNumber));
+      renderUnplaced(unplaced);
+      applySearch(seatNodes, unplaced);
+    }
+
+    function renderUnplaced(unplaced) {
+      rosterGrid.innerHTML = '';
+      if (!unplaced.length) {
+        rosterGrid.innerHTML = '<div class="roster-card matched">All roster students are currently accounted for in the fixed layout or alias map.</div>';
+        return;
+      }
+
+      unplaced.forEach(student => {
+        const parsed = splitName(student.name);
+        const card = document.createElement('div');
+        card.className = 'roster-card unplaced';
+        card.dataset.search = `${student.name} ${student.studentNumber}`.toLowerCase();
+        card.innerHTML = `
+          <strong>${parsed.first} ${parsed.last}</strong>
+          <div>Student #: ${student.studentNumber}</div>
+          <div>Full Name: ${student.name}</div>
+        `;
+        rosterGrid.appendChild(card);
+      });
+    }
+
+    function applySearch(seatNodes = [...document.querySelectorAll('.seat')], unplaced = [...document.querySelectorAll('.roster-card')]) {
+      const q = studentSearch.value.trim().toLowerCase();
+
+      seatNodes.forEach(node => {
+        node.classList.remove('highlight');
+        if (q && (node.dataset.search || '').includes(q)) {
+          node.classList.add('highlight');
+        }
+      });
+
+      const cards = Array.isArray(unplaced) ? unplaced : [...document.querySelectorAll('.roster-card')];
+      cards.forEach(card => {
+        if (!(card instanceof HTMLElement)) return;
+        card.classList.remove('matched');
+        if (q && (card.dataset.search || '').includes(q)) {
+          card.classList.add('matched');
+        }
+      });
+    }
+
+    sectionSelect.addEventListener('change', renderRoom);
+    studentSearch.addEventListener('input', () => applySearch());
+
+    renderSections();
+    renderRoom();
+  </script>
+</body>
+</html>

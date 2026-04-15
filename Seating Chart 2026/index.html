@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classroom Seating Viewer</title>
+  <meta
+    name="description"
+    content="Interactive classroom seating viewer with live student seat mapping by class period."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="navbar.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand-mark">DT</div>
+        <div class="brand-text">
+          <h1>Stratosyn - Seating Viewer</h1>
+          <p>Live classroom layout and student seat mapping</p>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <button class="ghost-btn" id="toggleControlsBtn" type="button" aria-expanded="true" aria-controls="controlPanel">
+          Hide Controls
+        </button>
+        <button class="ghost-btn" id="toggleDetailsBtn" type="button" aria-expanded="true" aria-controls="detailsPanel">
+          Hide Details
+        </button>
+        <button class="ghost-btn" id="refreshBtn" type="button">
+          Refresh Data
+        </button>
+      </div>
+    </header>
+
+    <main
+      class="dashboard dashboard--controls-open dashboard--details-open"
+      id="dashboard"
+      data-controls="open"
+      data-details="open"
+    >
+      <aside class="control-panel card" id="controlPanel">
+        <div class="panel-section">
+          <div class="panel-heading">
+            <h2>Class Controls</h2>
+            <p>Select a period and filter students quickly.</p>
+          </div>
+
+          <label class="input-group">
+            <span class="input-label">Class Period</span>
+            <select id="periodSelect" class="input-control">
+              <option value="period1">Period 1</option>
+              <option value="period2">Period 2</option>
+              <option value="period3">Period 3</option>
+              <option value="period4">Period 4</option>
+              <option value="period5">Period 5</option>
+              <option value="period6">Period 6</option>
+            </select>
+          </label>
+
+          <label class="input-group">
+            <span class="input-label">Search Student</span>
+            <input
+              type="text"
+              id="studentSearch"
+              class="input-control"
+              placeholder="Type student name or student number..."
+              autocomplete="off"
+            />
+          </label>
+
+          <div class="toggle-row">
+            <label class="toggle-chip">
+              <input type="checkbox" id="showEmptySeats" checked />
+              <span>Show Empty Seats</span>
+            </label>
+
+            <label class="toggle-chip">
+              <input type="checkbox" id="highlightMatches" checked />
+              <span>Highlight Search Matches</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-section stats-grid">
+          <div class="stat-card">
+            <span class="stat-label">Course</span>
+            <strong id="courseLabel">JR Science 7</strong>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-label">Room</span>
+            <strong id="roomLabel">501</strong>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-label">Active Students</span>
+            <strong id="studentCount">0</strong>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-label">Open Seats</span>
+            <strong id="openSeatCount">0</strong>
+          </div>
+        </div>
+
+        <div class="panel-section legend-section">
+          <div class="panel-heading compact">
+            <h3>Legend</h3>
+          </div>
+
+          <div class="legend-list">
+            <div class="legend-item">
+              <span class="legend-swatch occupied"></span>
+              <span>Occupied Seat</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-swatch empty"></span>
+              <span>Empty Seat</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-swatch selected"></span>
+              <span>Selected Seat</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-swatch matched"></span>
+              <span>Search Match</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="room-stage card">
+        <div class="stage-header">
+          <div class="stage-header-left">
+            <div>
+              <h2 id="stageTitle">Period 1 Seating Map</h2>
+              <p id="stageSubtitle">Front of room is at the top</p>
+            </div>
+          </div>
+
+          <div class="stage-badges">
+            <span class="badge" id="periodBadge">Period 1</span>
+            <span class="badge subtle">36 Seat Layout</span>
+          </div>
+        </div>
+
+        <div class="stage-toolbar">
+          <button class="ghost-btn stage-toggle-btn" id="mobileToggleControlsBtn" type="button" aria-expanded="true" aria-controls="controlPanel">
+            Toggle Controls
+          </button>
+          <button class="ghost-btn stage-toggle-btn" id="mobileToggleDetailsBtn" type="button" aria-expanded="true" aria-controls="detailsPanel">
+            Toggle Details
+          </button>
+        </div>
+
+        <div class="room-frame">
+          <div class="room-front-banner">Front of Classroom</div>
+
+          <div id="classroomGrid" class="classroom-grid" aria-live="polite">
+            <!-- JS injects desk groups and seat cards here -->
+          </div>
+        </div>
+      </section>
+
+      <aside class="details-panel card" id="detailsPanel">
+        <div class="panel-heading">
+          <h2>Seat Details</h2>
+          <p>Select any seat in the room to inspect its assignment.</p>
+        </div>
+
+        <div id="seatDetails" class="details-empty">
+          <div class="details-placeholder-icon">🪑</div>
+          <h3>No Seat Selected</h3>
+          <p>
+            Click a seat to view student name, student number, roster index,
+            table location, and seat position.
+          </p>
+        </div>
+
+        <template id="seatDetailsTemplate">
+          <div class="details-card">
+            <div class="details-top">
+              <div class="seat-badge" id="detailSeatId">Seat 1</div>
+              <div class="seat-status" id="detailSeatStatus">Occupied</div>
+            </div>
+
+            <div class="student-identity">
+              <h3 id="detailStudentName">Student Name</h3>
+              <p id="detailMatchedRoster">Matched roster name</p>
+            </div>
+
+            <div class="details-grid">
+              <div class="detail-item">
+                <span class="detail-label">Student Number</span>
+                <strong id="detailStudentNumber">00000</strong>
+              </div>
+
+              <div class="detail-item">
+                <span class="detail-label">Roster Index</span>
+                <strong id="detailRosterIndex">1</strong>
+              </div>
+
+              <div class="detail-item">
+                <span class="detail-label">Table</span>
+                <strong id="detailTableId">1</strong>
+              </div>
+
+              <div class="detail-item">
+                <span class="detail-label">Seat Position</span>
+                <strong id="detailSeatPosition">Top Left</strong>
+              </div>
+
+              <div class="detail-item">
+                <span class="detail-label">Zone</span>
+                <strong id="detailZone">Front Left</strong>
+              </div>
+
+              <div class="detail-item">
+                <span class="detail-label">Grade</span>
+                <strong id="detailGrade">07</strong>
+              </div>
+            </div>
+          </div>
+        </template>
+      </aside>
+
+      <div data-nr-ui>
+
+    <div class="notch-rail" id="notchRail" role="region" aria-label="Timebar rail">
+      <button class="nr-handle" id="nrHandle" aria-label="Open focus planning" aria-expanded="false">
+        <div class="tb-rail" aria-hidden="true">
+          <div class="tb-nowIcon" id="tbNowIcon">
+            <img id="tbNowImg" alt="Current period" />
+          </div>
+
+          <div class="tb-timeLine" id="tbTime" aria-label="Current time"></div>
+
+          <div class="tb-divider" aria-hidden="true"></div>
+
+          <div class="tb-digits tb-mins" id="tbMinsLeft" aria-label="Minutes until next"></div>
+
+          <div class="tb-nextIcon" id="tbNextIcon">
+            <img id="tbNextImg" alt="Next period" />
+          </div>
+
+          <!-- Focus modes live INSIDE the rail (icon-only; rail is narrow) -->
+          <div class="fp-actions" id="fpActions" aria-label="Focus modes"></div>
+        </div>
+      </button>
+    </div>
+
+    <aside class="nr-drawer" id="nrDrawer" aria-label="Focus planning panel" aria-hidden="true">
+      <div class="nr-drawer-surface" role="dialog" aria-modal="false">
+        <div class="nr-drawer-head">
+          <div class="nr-drawer-title">
+            <span class="nr-dot" aria-hidden="true"></span>
+            <span>Focus Planning</span>
+          </div>
+
+          <div class="nr-drawer-actions">
+            <button class="nr-chip" type="button" data-action="pin" aria-pressed="false" title="Pin panel open">Pin</button>
+            <button class="nr-chip" type="button" data-action="top">Top</button>
+            <button class="nr-chip nr-chip-close" type="button" data-action="close" aria-label="Close panel">Close</button>
+          </div>
+        </div>
+
+        <div class="nr-drawer-body">
+          <section class="nr-section">
+
+            <!-- Calendar iframe (accent border follows --nr-accent) -->
+            <iframe
+              class="nr-cal"
+              src="https://calendar.google.com/calendar/embed?src=c_b33e0d1eb3c4b3402a31b1b9081db34c545607d8ca02886e021d63abd30dcbc0%40group.calendar.google.com&ctz=America%2FPhoenix&bgcolor=%23070A12"
+              frameborder="0"
+              scrolling="no"
+              loading="lazy"
+            ></iframe>
+
+            <h3 class="nr-h3">Controls</h3>
+
+            <div class="nr-grid">
+              <label class="nr-field">
+                <span class="nr-label">Lunch</span>
+                <select id="selLunch" class="nr-select">
+                  <option value="A">A Lunch</option>
+                  <option value="B">B Lunch</option>
+                </select>
+              </label>
+
+              <label class="nr-field">
+                <span class="nr-label">Day Type</span>
+                <select id="selDayType" class="nr-select">
+                  <option value="full">Full Day</option>
+                  <option value="early1pm">Half Day (1pm)</option>
+                  <option value="homeroom2">Homeroom Day</option>
+                  <option value="testing_tue_67">Testing Tue (6th–7th Finals)</option>
+                  <option value="testing_wed_345">Testing Wed (3rd–5th Finals)</option>
+                  <option value="testing_thu_12">Testing Thu (1st–2nd Finals)</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="nr-field nr-field-wide">
+              <span class="nr-label">Time Override (minutes)</span>
+              <div class="nr-rangeRow">
+                <input id="rngOverride" class="nr-range" type="range" min="-900" max="900" step="1" value="0" />
+                <div class="nr-rangeVal" id="lblOverride">0</div>
+              </div>
+              <p class="nr-hint">Starts at 0 every refresh. Slide to simulate time ahead/behind.</p>
+            </label>
+
+            <div class="nr-jumps" id="nrJumps" aria-label="Jump to period"></div>
+          </section>
+
+          <section class="nr-section">
+            <h3 class="nr-h3">Schedule Preview</h3>
+            <div class="nr-schedule" id="nrSchedule"></div>
+          </section>
+
+          <section class="nr-section">
+            <h3 class="nr-h3">Icon Reference</h3>
+            <div class="nr-iconGrid" id="nrIconGallery"></div>
+          </section>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>
