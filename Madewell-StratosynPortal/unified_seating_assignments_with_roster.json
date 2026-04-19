@@ -1,0 +1,2035 @@
+{
+  "schemaVersion": "1.0",
+  "description": "Unified seating assignments for all class periods using one shared 36-seat layout. Seat numbering is consistent across every period: tables are numbered left-to-right, top-to-bottom (1-9), and seats inside each table are TL, TR, BL, BR.",
+  "layout": {
+    "totalDesks": 36,
+    "tableCount": 9,
+    "seatsPerTable": 4,
+    "seatNumberingRule": {
+      "tableOrder": [
+        "front_left",
+        "front_center",
+        "front_right",
+        "middle_left",
+        "middle_center",
+        "middle_right",
+        "back_left",
+        "back_center",
+        "back_right"
+      ],
+      "seatOrderWithinTable": [
+        "top_left",
+        "top_right",
+        "bottom_left",
+        "bottom_right"
+      ]
+    },
+    "seats": [
+      {
+        "seatId": 1,
+        "tableId": 1,
+        "zone": "front_left",
+        "position": "top_left"
+      },
+      {
+        "seatId": 2,
+        "tableId": 1,
+        "zone": "front_left",
+        "position": "top_right"
+      },
+      {
+        "seatId": 3,
+        "tableId": 1,
+        "zone": "front_left",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 4,
+        "tableId": 1,
+        "zone": "front_left",
+        "position": "bottom_right"
+      },
+      {
+        "seatId": 5,
+        "tableId": 2,
+        "zone": "front_center",
+        "position": "top_left"
+      },
+      {
+        "seatId": 6,
+        "tableId": 2,
+        "zone": "front_center",
+        "position": "top_right"
+      },
+      {
+        "seatId": 7,
+        "tableId": 2,
+        "zone": "front_center",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 8,
+        "tableId": 2,
+        "zone": "front_center",
+        "position": "bottom_right"
+      },
+      {
+        "seatId": 9,
+        "tableId": 3,
+        "zone": "front_right",
+        "position": "top_left"
+      },
+      {
+        "seatId": 10,
+        "tableId": 3,
+        "zone": "front_right",
+        "position": "top_right"
+      },
+      {
+        "seatId": 11,
+        "tableId": 3,
+        "zone": "front_right",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 12,
+        "tableId": 3,
+        "zone": "front_right",
+        "position": "bottom_right"
+      },
+      {
+        "seatId": 13,
+        "tableId": 4,
+        "zone": "middle_left",
+        "position": "top_left"
+      },
+      {
+        "seatId": 14,
+        "tableId": 4,
+        "zone": "middle_left",
+        "position": "top_right"
+      },
+      {
+        "seatId": 15,
+        "tableId": 4,
+        "zone": "middle_left",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 16,
+        "tableId": 4,
+        "zone": "middle_left",
+        "position": "bottom_right"
+      },
+      {
+        "seatId": 17,
+        "tableId": 5,
+        "zone": "middle_center",
+        "position": "top_left"
+      },
+      {
+        "seatId": 18,
+        "tableId": 5,
+        "zone": "middle_center",
+        "position": "top_right"
+      },
+      {
+        "seatId": 19,
+        "tableId": 5,
+        "zone": "middle_center",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 20,
+        "tableId": 5,
+        "zone": "middle_center",
+        "position": "bottom_right"
+      },
+      {
+        "seatId": 21,
+        "tableId": 6,
+        "zone": "middle_right",
+        "position": "top_left"
+      },
+      {
+        "seatId": 22,
+        "tableId": 6,
+        "zone": "middle_right",
+        "position": "top_right"
+      },
+      {
+        "seatId": 23,
+        "tableId": 6,
+        "zone": "middle_right",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 24,
+        "tableId": 6,
+        "zone": "middle_right",
+        "position": "bottom_right"
+      },
+      {
+        "seatId": 25,
+        "tableId": 7,
+        "zone": "back_left",
+        "position": "top_left"
+      },
+      {
+        "seatId": 26,
+        "tableId": 7,
+        "zone": "back_left",
+        "position": "top_right"
+      },
+      {
+        "seatId": 27,
+        "tableId": 7,
+        "zone": "back_left",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 28,
+        "tableId": 7,
+        "zone": "back_left",
+        "position": "bottom_right"
+      },
+      {
+        "seatId": 29,
+        "tableId": 8,
+        "zone": "back_center",
+        "position": "top_left"
+      },
+      {
+        "seatId": 30,
+        "tableId": 8,
+        "zone": "back_center",
+        "position": "top_right"
+      },
+      {
+        "seatId": 31,
+        "tableId": 8,
+        "zone": "back_center",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 32,
+        "tableId": 8,
+        "zone": "back_center",
+        "position": "bottom_right"
+      },
+      {
+        "seatId": 33,
+        "tableId": 9,
+        "zone": "back_right",
+        "position": "top_left"
+      },
+      {
+        "seatId": 34,
+        "tableId": 9,
+        "zone": "back_right",
+        "position": "top_right"
+      },
+      {
+        "seatId": 35,
+        "tableId": 9,
+        "zone": "back_right",
+        "position": "bottom_left"
+      },
+      {
+        "seatId": 36,
+        "tableId": 9,
+        "zone": "back_right",
+        "position": "bottom_right"
+      }
+    ]
+  },
+  "periods": {
+    "period1": {
+      "source": "1sthourprintout.pdf",
+      "classLabel": "JR Science 7 Honors - B",
+      "assignments": [
+        {
+          "seatId": 1,
+          "student": "Fields, Harlow",
+          "rosterIndex": 10,
+          "studentNumber": "71708",
+          "matchedRosterName": "Fields, Harlow S",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 2,
+          "student": "Pauls, Antonio",
+          "rosterIndex": 23,
+          "studentNumber": "71807",
+          "matchedRosterName": "Pauls, Antonio",
+          "grade": "07"
+        },
+        {
+          "seatId": 3,
+          "student": "Schiefelbein, Madelyn",
+          "rosterIndex": 25,
+          "studentNumber": "75914",
+          "matchedRosterName": "Schiefelbein, Madelyn",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 4,
+          "student": "Lim, Alyssa",
+          "rosterIndex": 17,
+          "studentNumber": "76341",
+          "matchedRosterName": "Lim, Alyssa",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 5,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 6,
+          "student": "Schmidt, Norah",
+          "rosterIndex": 26,
+          "studentNumber": "53778",
+          "matchedRosterName": "Schmidt, Norah V",
+          "grade": "07"
+        },
+        {
+          "seatId": 7,
+          "student": "Morcom, Ivy",
+          "rosterIndex": 20,
+          "studentNumber": "70985",
+          "matchedRosterName": "Morcom, Ivy",
+          "grade": "07"
+        },
+        {
+          "seatId": 8,
+          "student": "Maheshwari, Kashvi",
+          "rosterIndex": 19,
+          "studentNumber": "75751",
+          "matchedRosterName": "Maheshwari, Kashvi",
+          "grade": "07"
+        },
+        {
+          "seatId": 9,
+          "student": "Bryan, Alexander",
+          "rosterIndex": 4,
+          "studentNumber": "74108",
+          "matchedRosterName": "Bryan, Alex X",
+          "grade": "07"
+        },
+        {
+          "seatId": 10,
+          "student": "DeGruccio, Michelle",
+          "rosterIndex": 7,
+          "studentNumber": "75117",
+          "matchedRosterName": "DeGruccio, Michelle R",
+          "grade": "07"
+        },
+        {
+          "seatId": 11,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 12,
+          "student": "Hand, Conner",
+          "rosterIndex": 12,
+          "studentNumber": "71737",
+          "matchedRosterName": "Hand, Conner J",
+          "grade": "07"
+        },
+        {
+          "seatId": 13,
+          "student": "Siaotong, Margaret",
+          "rosterIndex": 27,
+          "studentNumber": "75948",
+          "matchedRosterName": "Siaotong, Margaret A",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 14,
+          "student": "Elliott, Kayden",
+          "rosterIndex": 9,
+          "studentNumber": "71611",
+          "matchedRosterName": "Elliott, Kayden",
+          "grade": "07"
+        },
+        {
+          "seatId": 15,
+          "student": "Neypes, Juda",
+          "rosterIndex": 22,
+          "studentNumber": "75993",
+          "matchedRosterName": "Neypes, Juda K",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 16,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 17,
+          "student": "Carroll, Olivia",
+          "rosterIndex": 5,
+          "studentNumber": "72203",
+          "matchedRosterName": "Carroll, Olivia",
+          "grade": "07"
+        },
+        {
+          "seatId": 18,
+          "student": "Huang, Yu Chin (Albert)",
+          "rosterIndex": 14,
+          "studentNumber": "71772",
+          "matchedRosterName": "Huang, Albert",
+          "grade": "07"
+        },
+        {
+          "seatId": 19,
+          "student": "Morse, Ryder",
+          "rosterIndex": 21,
+          "studentNumber": "71897",
+          "matchedRosterName": "Morse, Ryder W",
+          "grade": "07"
+        },
+        {
+          "seatId": 20,
+          "student": "Wong, Kathy",
+          "rosterIndex": 33,
+          "studentNumber": "36683",
+          "matchedRosterName": "Wong, Kathy G",
+          "grade": "07"
+        },
+        {
+          "seatId": 21,
+          "student": "Szilagyi, Hyrum",
+          "rosterIndex": 29,
+          "studentNumber": "72384",
+          "matchedRosterName": "Szilagyi, Hyrum S",
+          "grade": "07"
+        },
+        {
+          "seatId": 22,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 23,
+          "student": "Szager, Emilee (Emmy)",
+          "rosterIndex": 28,
+          "studentNumber": "77394",
+          "matchedRosterName": "Szager, Emmy E",
+          "grade": "07",
+          "startDate": "2026-03-09"
+        },
+        {
+          "seatId": 24,
+          "student": "Satish Reddy, Krish (Gattu)",
+          "rosterIndex": 24,
+          "studentNumber": "72369",
+          "matchedRosterName": "Satish Reddy, Gattu",
+          "grade": "07"
+        },
+        {
+          "seatId": 25,
+          "student": "Allen, Sofia",
+          "rosterIndex": 1,
+          "studentNumber": "69028",
+          "matchedRosterName": "Allen, Sofia L",
+          "grade": "07"
+        },
+        {
+          "seatId": 26,
+          "student": "Karthick, Sahana",
+          "rosterIndex": 15,
+          "studentNumber": "72088",
+          "matchedRosterName": "Karthick, Sahana",
+          "grade": "07"
+        },
+        {
+          "seatId": 27,
+          "student": "Blair, Sofia (Lucy)",
+          "rosterIndex": 3,
+          "studentNumber": "73242",
+          "matchedRosterName": "Blair, Lucy",
+          "grade": "07"
+        },
+        {
+          "seatId": 28,
+          "student": "Hebel, Thomas",
+          "rosterIndex": 13,
+          "studentNumber": "71745",
+          "matchedRosterName": "Hebel, Thomas",
+          "grade": "07"
+        },
+        {
+          "seatId": 29,
+          "student": "Alves, Hudson",
+          "rosterIndex": 2,
+          "studentNumber": "71457",
+          "matchedRosterName": "Alves, Hudson J",
+          "grade": "07"
+        },
+        {
+          "seatId": 30,
+          "student": "Cullimore, Isabelle",
+          "rosterIndex": 6,
+          "studentNumber": "71578",
+          "matchedRosterName": "Cullimore, Isabelle",
+          "grade": "07"
+        },
+        {
+          "seatId": 31,
+          "student": "LeDuc, Joii",
+          "rosterIndex": 16,
+          "studentNumber": "73801",
+          "matchedRosterName": "LeDuc, Joii N",
+          "grade": "07"
+        },
+        {
+          "seatId": 32,
+          "student": "Devendiran, Anicha",
+          "rosterIndex": 8,
+          "studentNumber": "74951",
+          "matchedRosterName": "Devendiran, Anicha",
+          "grade": "07"
+        },
+        {
+          "seatId": 33,
+          "student": "Vedire, Sriaikya Reddy",
+          "rosterIndex": 31,
+          "studentNumber": "72392",
+          "matchedRosterName": "Vedire, Sriaikya Reddy",
+          "grade": "07"
+        },
+        {
+          "seatId": 34,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 35,
+          "student": "Wall, Aiden",
+          "rosterIndex": 32,
+          "studentNumber": "72393",
+          "matchedRosterName": "Wall, Aiden",
+          "grade": "07"
+        },
+        {
+          "seatId": 36,
+          "student": "Halmedi, Emir",
+          "rosterIndex": 11,
+          "studentNumber": "73941",
+          "matchedRosterName": "Halmedi, Emir B",
+          "grade": "07",
+          "startDate": "2026-01-19"
+        }
+      ],
+      "courseCode": "JR.SC7.22h01-1",
+      "room": "501",
+      "term": "S2",
+      "schedule": {
+        "fullDay": "08:15AM-09:08AM",
+        "wedHr": "08:15AM-09:05AM",
+        "halfDay": "08:15AM-08:51AM"
+      },
+      "activeStudents": 33
+    },
+    "period2": {
+      "source": "2ndhourprintout.pdf",
+      "classLabel": "JR Science 7-B",
+      "assignments": [
+        {
+          "seatId": 1,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 2,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 3,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 4,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 5,
+          "student": "Armstrong, Ethan",
+          "rosterIndex": 1,
+          "studentNumber": "71461",
+          "matchedRosterName": "Armstrong, Ethan",
+          "grade": "07"
+        },
+        {
+          "seatId": 6,
+          "student": "Callaway, Peyton",
+          "rosterIndex": 3,
+          "studentNumber": "71513",
+          "matchedRosterName": "Callaway, Peyton M",
+          "grade": "07"
+        },
+        {
+          "seatId": 7,
+          "student": "Krieger, Keira",
+          "rosterIndex": 11,
+          "studentNumber": "71795",
+          "matchedRosterName": "Krieger, Keira D",
+          "grade": "07"
+        },
+        {
+          "seatId": 8,
+          "student": "Bowen, Emory",
+          "rosterIndex": 2,
+          "studentNumber": "69698",
+          "matchedRosterName": "Bowen, Emory",
+          "grade": "07"
+        },
+        {
+          "seatId": 9,
+          "student": "Palmo, Delilah (Lila)",
+          "rosterIndex": 16,
+          "studentNumber": "69604",
+          "matchedRosterName": "Palmo, Lila R",
+          "grade": "07"
+        },
+        {
+          "seatId": 10,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 11,
+          "student": "Maggi-Early, Matix",
+          "rosterIndex": 14,
+          "studentNumber": "71853",
+          "matchedRosterName": "Maggi-Early, Matix",
+          "grade": "07"
+        },
+        {
+          "seatId": 12,
+          "student": "Frank-Doelle, Hallie",
+          "rosterIndex": 6,
+          "studentNumber": "71715",
+          "matchedRosterName": "Frank-Doelle, Hallie",
+          "grade": "07"
+        },
+        {
+          "seatId": 13,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 14,
+          "student": "Traverse, Landon",
+          "rosterIndex": 22,
+          "studentNumber": "72389",
+          "matchedRosterName": "Traverse, Landon",
+          "grade": "07"
+        },
+        {
+          "seatId": 15,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 16,
+          "student": "Dahlin, Skylar (Skylar)",
+          "rosterIndex": 5,
+          "studentNumber": "71592",
+          "matchedRosterName": "Dahlin, Skylar",
+          "grade": "07"
+        },
+        {
+          "seatId": 17,
+          "student": "Kilby, Emerie",
+          "rosterIndex": 9,
+          "studentNumber": "71791",
+          "matchedRosterName": "Kilby, Emerie N",
+          "grade": "07"
+        },
+        {
+          "seatId": 18,
+          "student": "Pratt, Aiden",
+          "rosterIndex": 19,
+          "studentNumber": "74226",
+          "matchedRosterName": "Pratt, Aiden J",
+          "grade": "07"
+        },
+        {
+          "seatId": 19,
+          "student": "Pogharian, Viggo",
+          "rosterIndex": 17,
+          "studentNumber": "72362",
+          "matchedRosterName": "Pogharian, Viggo",
+          "grade": "07"
+        },
+        {
+          "seatId": 20,
+          "student": "Givens, Scarlett",
+          "rosterIndex": 8,
+          "studentNumber": "73910",
+          "matchedRosterName": "Givens, Scarlett J",
+          "grade": "07"
+        },
+        {
+          "seatId": 21,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 22,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 23,
+          "student": "Li, Chih Yen (Doris)",
+          "rosterIndex": 12,
+          "studentNumber": "71824",
+          "matchedRosterName": "Li, Dori",
+          "grade": "07"
+        },
+        {
+          "seatId": 24,
+          "student": "Freeman, Mason",
+          "rosterIndex": 7,
+          "studentNumber": "72046",
+          "matchedRosterName": "Freeman, Mason",
+          "grade": "07"
+        },
+        {
+          "seatId": 25,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 26,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 27,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 28,
+          "student": "Walker, Hezekiah (Hez)",
+          "rosterIndex": 24,
+          "studentNumber": "76092",
+          "matchedRosterName": "Walker, Hez M",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 29,
+          "student": "Klein, Hunter",
+          "rosterIndex": 10,
+          "studentNumber": "71792",
+          "matchedRosterName": "Klein, Hunter J",
+          "grade": "07"
+        },
+        {
+          "seatId": 30,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 31,
+          "student": "Tuck, Aaron (Tommy)",
+          "rosterIndex": 23,
+          "studentNumber": "74648",
+          "matchedRosterName": "Tuck, Tommy T",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 32,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 33,
+          "student": "Stephenson, Braelynn (Brae)",
+          "rosterIndex": 20,
+          "studentNumber": "72382",
+          "matchedRosterName": "Stephenson, Brae",
+          "grade": "07"
+        },
+        {
+          "seatId": 34,
+          "student": "Corum, Ryder",
+          "rosterIndex": 4,
+          "studentNumber": "71573",
+          "matchedRosterName": "Corum, Ryder",
+          "grade": "07"
+        },
+        {
+          "seatId": 35,
+          "student": "Mars, Thomas (TJ)",
+          "rosterIndex": 15,
+          "studentNumber": "71866",
+          "matchedRosterName": "Mars, TJ J",
+          "grade": "07"
+        },
+        {
+          "seatId": 36,
+          "student": "Wu, Min-Fei (Allie)",
+          "rosterIndex": 25,
+          "studentNumber": "74355",
+          "matchedRosterName": "Wu, Allison",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        }
+      ],
+      "courseCode": "JR.SC7.22.01-1",
+      "room": "501",
+      "term": "S2",
+      "schedule": {
+        "fullDay": "09:08AM-10:01AM",
+        "wedHr": "09:05AM-10:13AM",
+        "halfDay": "08:51AM-09:27AM"
+      },
+      "activeStudents": 26
+    },
+    "period3": {
+      "source": "3rdhourprintout.pdf",
+      "classLabel": "JR Science 7-B",
+      "assignments": [
+        {
+          "seatId": 1,
+          "student": "Espinoza, Diego",
+          "rosterIndex": 8,
+          "studentNumber": "71612",
+          "matchedRosterName": "Espinoza, Diego E",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 2,
+          "student": "Huang, Yu Ching (Erin)",
+          "rosterIndex": 13,
+          "studentNumber": "71774",
+          "matchedRosterName": "Huang, Erica",
+          "grade": "07"
+        },
+        {
+          "seatId": 3,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 4,
+          "student": "Hilger, Kinley",
+          "rosterIndex": 12,
+          "studentNumber": "71761",
+          "matchedRosterName": "Hilger, Kinley",
+          "grade": "07"
+        },
+        {
+          "seatId": 5,
+          "student": "Herrera, Ryder",
+          "rosterIndex": 10,
+          "studentNumber": "71748",
+          "matchedRosterName": "Herrera, Ryder",
+          "grade": "07"
+        },
+        {
+          "seatId": 6,
+          "student": "Cook, Mckenna",
+          "rosterIndex": 5,
+          "studentNumber": "71568",
+          "matchedRosterName": "Cook, Mckenna N",
+          "grade": "07"
+        },
+        {
+          "seatId": 7,
+          "student": "Siguenza, Olivia",
+          "rosterIndex": 25,
+          "studentNumber": "72375",
+          "matchedRosterName": "Siguenza, Olivia J",
+          "grade": "07"
+        },
+        {
+          "seatId": 8,
+          "student": "Morris, Tristan",
+          "rosterIndex": 20,
+          "studentNumber": "76543",
+          "matchedRosterName": "Morris, Tristan",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 9,
+          "student": "Abarca, Bentley",
+          "rosterIndex": 1,
+          "studentNumber": "71186",
+          "matchedRosterName": "Abarca, Bentley",
+          "grade": "07"
+        },
+        {
+          "seatId": 10,
+          "student": "McWilliams, Piper",
+          "rosterIndex": 17,
+          "studentNumber": "71880",
+          "matchedRosterName": "McWilliams, Piper",
+          "grade": "07"
+        },
+        {
+          "seatId": 11,
+          "student": "Tintle, Nash",
+          "rosterIndex": 29,
+          "studentNumber": "72388",
+          "matchedRosterName": "Tintle, Nash",
+          "grade": "07"
+        },
+        {
+          "seatId": 12,
+          "student": "Swartwout, Khloe",
+          "rosterIndex": 27,
+          "studentNumber": "75615",
+          "matchedRosterName": "Swartwout, Khloe C",
+          "grade": "07"
+        },
+        {
+          "seatId": 13,
+          "student": "Riccelli, Nicolette (Nikki)",
+          "rosterIndex": 24,
+          "studentNumber": "71414",
+          "matchedRosterName": "Riccelli, Nic, Nikki S",
+          "grade": "07"
+        },
+        {
+          "seatId": 14,
+          "student": "Moss, Adam",
+          "rosterIndex": 21,
+          "studentNumber": "74953",
+          "matchedRosterName": "Moss, Adam",
+          "grade": "07"
+        },
+        {
+          "seatId": 15,
+          "student": "Womboldt, Logan",
+          "rosterIndex": 30,
+          "studentNumber": "72397",
+          "matchedRosterName": "Womboldt, Logan L",
+          "grade": "07"
+        },
+        {
+          "seatId": 16,
+          "student": "Hapkowskyj, Daniella",
+          "rosterIndex": 9,
+          "studentNumber": "72288",
+          "matchedRosterName": "Hapkowskyj, Daniella C",
+          "grade": "07"
+        },
+        {
+          "seatId": 17,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 18,
+          "student": "Sorensen, Summer",
+          "rosterIndex": 26,
+          "studentNumber": "72379",
+          "matchedRosterName": "Sorensen, Summer",
+          "grade": "07"
+        },
+        {
+          "seatId": 19,
+          "student": "Miller, Kora",
+          "rosterIndex": 18,
+          "studentNumber": "76431",
+          "matchedRosterName": "Miller, Kora M",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 20,
+          "student": "Christenson, Hudson (Huddy)",
+          "rosterIndex": 4,
+          "studentNumber": "72204",
+          "matchedRosterName": "Christenson, Huddy",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 21,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 22,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 23,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 24,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 25,
+          "student": "Coronado, Zoe",
+          "rosterIndex": 6,
+          "studentNumber": "73958",
+          "matchedRosterName": "Coronado, Zoe M",
+          "grade": "07"
+        },
+        {
+          "seatId": 26,
+          "student": "Bennett, Adelyn",
+          "rosterIndex": 2,
+          "studentNumber": "73742",
+          "matchedRosterName": "Bennett, Adelyn",
+          "grade": "07"
+        },
+        {
+          "seatId": 27,
+          "student": "Powers, Natasha",
+          "rosterIndex": 23,
+          "studentNumber": "53997",
+          "matchedRosterName": "Powers, Natasha K",
+          "grade": "07"
+        },
+        {
+          "seatId": 28,
+          "student": "Herring, Alex",
+          "rosterIndex": 11,
+          "studentNumber": "71754",
+          "matchedRosterName": "Herring, Alex C",
+          "grade": "07"
+        },
+        {
+          "seatId": 29,
+          "student": "Maycock, Wyatt",
+          "rosterIndex": 16,
+          "studentNumber": "71876",
+          "matchedRosterName": "Maycock, Wyatt",
+          "grade": "07"
+        },
+        {
+          "seatId": 30,
+          "student": "Lynn, Austin",
+          "rosterIndex": 15,
+          "studentNumber": "71848",
+          "matchedRosterName": "Lynn, Austin",
+          "grade": "07"
+        },
+        {
+          "seatId": 31,
+          "student": "Taylor, Keith",
+          "rosterIndex": 28,
+          "studentNumber": "75816",
+          "matchedRosterName": "Taylor, Keith",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 32,
+          "student": "Perry, Adalynn",
+          "rosterIndex": 22,
+          "studentNumber": "72114",
+          "matchedRosterName": "Perry, Adalynn",
+          "grade": "07"
+        },
+        {
+          "seatId": 33,
+          "student": "Corrales, April",
+          "rosterIndex": 7,
+          "studentNumber": "71572",
+          "matchedRosterName": "Corrales, April",
+          "grade": "07"
+        },
+        {
+          "seatId": 34,
+          "student": "Kincaid, Austin",
+          "rosterIndex": 14,
+          "studentNumber": "75321",
+          "matchedRosterName": "Kincaid, Austin J",
+          "grade": "07",
+          "startDate": "2026-01-22"
+        },
+        {
+          "seatId": 35,
+          "student": "Brooks, Boston",
+          "rosterIndex": 3,
+          "studentNumber": "71507",
+          "matchedRosterName": "Brooks, Boston",
+          "grade": "07"
+        },
+        {
+          "seatId": 36,
+          "student": "Miranda, Jocelyn",
+          "rosterIndex": 19,
+          "studentNumber": "74517",
+          "matchedRosterName": "Miranda, Jocelyn H",
+          "grade": "07"
+        }
+      ],
+      "courseCode": "JR.SC7.22.01-103",
+      "room": "501",
+      "term": "S2",
+      "schedule": {
+        "fullDay": "10:01AM-10:54AM",
+        "wedHr": "10:13AM-11:03AM",
+        "halfDay": "09:27AM-10:03AM"
+      },
+      "activeStudents": 31
+    },
+    "period4": {
+      "source": "4thhourprintout.pdf",
+      "classLabel": "JR Science 7-B",
+      "assignments": [
+        {
+          "seatId": 1,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 2,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 3,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 4,
+          "student": "Huang, Shinyao",
+          "rosterIndex": 11,
+          "studentNumber": "74154",
+          "matchedRosterName": "Huang, Shinyao",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 5,
+          "student": "Burke, Adeline (Addie)",
+          "rosterIndex": 6,
+          "studentNumber": "74304",
+          "matchedRosterName": "Burke, Addie",
+          "grade": "07"
+        },
+        {
+          "seatId": 6,
+          "student": "Kemnitz, Connor",
+          "rosterIndex": 14,
+          "studentNumber": "74286",
+          "matchedRosterName": "Kemnitz, Connor  J",
+          "grade": "07"
+        },
+        {
+          "seatId": 7,
+          "student": "Schwagerman, Blake",
+          "rosterIndex": 22,
+          "studentNumber": "75186",
+          "matchedRosterName": "Schwagerman, Blake R",
+          "grade": "07"
+        },
+        {
+          "seatId": 8,
+          "student": "Baker, Luke",
+          "rosterIndex": 3,
+          "studentNumber": "75378",
+          "matchedRosterName": "Baker, Luke",
+          "grade": "07"
+        },
+        {
+          "seatId": 9,
+          "student": "Shepherd, Gallagher",
+          "rosterIndex": 23,
+          "studentNumber": "75185",
+          "matchedRosterName": "Shepherd, Gallagher",
+          "grade": "07"
+        },
+        {
+          "seatId": 10,
+          "student": "Ayala, Callie",
+          "rosterIndex": 2,
+          "studentNumber": "71462",
+          "matchedRosterName": "Ayala, Callie",
+          "grade": "07"
+        },
+        {
+          "seatId": 11,
+          "student": "Chen, Pinghung",
+          "rosterIndex": 8,
+          "studentNumber": "77478",
+          "matchedRosterName": "Chen, Pinghung",
+          "grade": "07",
+          "startDate": "2026-03-24"
+        },
+        {
+          "seatId": 12,
+          "student": "Pembarthi, Vaishant",
+          "rosterIndex": 18,
+          "studentNumber": "75032",
+          "matchedRosterName": "Pembarthi, Vaishant S",
+          "grade": "07"
+        },
+        {
+          "seatId": 13,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 14,
+          "student": "Tanzer, Jack",
+          "rosterIndex": 25,
+          "studentNumber": "76296",
+          "matchedRosterName": "Tanzer, Jack L",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 15,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 16,
+          "student": "Wallace, Xavier",
+          "rosterIndex": 26,
+          "studentNumber": "73745",
+          "matchedRosterName": "Wallace, Xavier I",
+          "grade": "07"
+        },
+        {
+          "seatId": 17,
+          "student": "Scheirer, Grace",
+          "rosterIndex": 20,
+          "studentNumber": "70738",
+          "matchedRosterName": "Scheirer, Grace",
+          "grade": "07"
+        },
+        {
+          "seatId": 18,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 19,
+          "student": "Jimenez, Carlo (Carlo)",
+          "rosterIndex": 13,
+          "studentNumber": "71777",
+          "matchedRosterName": "Jimenez, Carlo E",
+          "grade": "07"
+        },
+        {
+          "seatId": 20,
+          "student": "Peiffer, Wesley",
+          "rosterIndex": 17,
+          "studentNumber": "72112",
+          "matchedRosterName": "Peiffer, Wesley",
+          "grade": "07"
+        },
+        {
+          "seatId": 21,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 22,
+          "student": "Dunklin, Zachary (Zac)",
+          "rosterIndex": 9,
+          "studentNumber": "75451",
+          "matchedRosterName": "Dunklin, Zac",
+          "grade": "07"
+        },
+        {
+          "seatId": 23,
+          "student": "Larson, Logan",
+          "rosterIndex": 15,
+          "studentNumber": "71802",
+          "matchedRosterName": "Larson, Logan",
+          "grade": "07"
+        },
+        {
+          "seatId": 24,
+          "student": "Smith, Yvonne (Evey)",
+          "rosterIndex": 24,
+          "studentNumber": "69197",
+          "matchedRosterName": "Smith, Evey C",
+          "grade": "07"
+        },
+        {
+          "seatId": 25,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 26,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 27,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 28,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 29,
+          "student": "Schroeder, Jaxon (Jax)",
+          "rosterIndex": 21,
+          "studentNumber": "74848",
+          "matchedRosterName": "Schroeder, Jax D",
+          "grade": "07"
+        },
+        {
+          "seatId": 30,
+          "student": "Basulto, Mia",
+          "rosterIndex": 5,
+          "studentNumber": "54238",
+          "matchedRosterName": "Basulto, Mia B",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 31,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 32,
+          "student": "Casartelli, Maxwell",
+          "rosterIndex": 7,
+          "studentNumber": "71535",
+          "matchedRosterName": "Casartelli, Maxwell M",
+          "grade": "07"
+        },
+        {
+          "seatId": 33,
+          "student": "Banton, Kaylie",
+          "rosterIndex": 4,
+          "studentNumber": "75433",
+          "matchedRosterName": "Banton, Kaylie A",
+          "grade": "07"
+        },
+        {
+          "seatId": 34,
+          "student": "Igoe, Liam",
+          "rosterIndex": 12,
+          "studentNumber": "71775",
+          "matchedRosterName": "Igoe, Liam",
+          "grade": "07"
+        },
+        {
+          "seatId": 35,
+          "student": "Anderson, Zachary",
+          "rosterIndex": 1,
+          "studentNumber": "74231",
+          "matchedRosterName": "Anderson, Zachary I",
+          "grade": "07"
+        },
+        {
+          "seatId": 36,
+          "student": "Ochoa, Jayden",
+          "rosterIndex": 16,
+          "studentNumber": "75701",
+          "matchedRosterName": "Ochoa, Jayden T",
+          "grade": "07"
+        }
+      ],
+      "courseCode": "JR.SC7.22.01-4",
+      "room": "501",
+      "term": "S2",
+      "schedule": {
+        "fullDay": "10:54AM-11:47AM",
+        "wedHr": "11:03AM-11:53AM",
+        "halfDay": "10:03AM-10:39AM"
+      },
+      "activeStudents": 26
+    },
+    "period5": {
+      "source": "5thhourprintout.pdf",
+      "classLabel": "JR Science 7-B",
+      "assignments": [
+        {
+          "seatId": 1,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 2,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 3,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 4,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 5,
+          "student": "Vikram, Nishita",
+          "rosterIndex": 22,
+          "studentNumber": "75250",
+          "matchedRosterName": "Vikram, Nishita",
+          "grade": "07"
+        },
+        {
+          "seatId": 6,
+          "student": "Kormoh, Jibril",
+          "rosterIndex": 11,
+          "studentNumber": "71018",
+          "matchedRosterName": "Kormoh, Jibril",
+          "grade": "07"
+        },
+        {
+          "seatId": 7,
+          "student": "Spencer, Logan",
+          "rosterIndex": 18,
+          "studentNumber": "76873",
+          "matchedRosterName": "Spencer, Logan",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 8,
+          "student": "Wilson, Millia (Millie)",
+          "rosterIndex": 23,
+          "studentNumber": "78277",
+          "matchedRosterName": "Wilson, Millie",
+          "grade": "07",
+          "startDate": "2026-04-08"
+        },
+        {
+          "seatId": 9,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 10,
+          "student": "Chang, To-Lin",
+          "rosterIndex": 5,
+          "studentNumber": "71651",
+          "matchedRosterName": "Chang, To-Lin",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 11,
+          "student": "Harris, Savannah",
+          "rosterIndex": 8,
+          "studentNumber": "73744",
+          "matchedRosterName": "Harris, Savannah",
+          "grade": "07"
+        },
+        {
+          "seatId": 12,
+          "student": "Kreick, Sidra",
+          "rosterIndex": 12,
+          "studentNumber": "61364",
+          "matchedRosterName": "Kreick, Sidra",
+          "grade": "07"
+        },
+        {
+          "seatId": 13,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 14,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 15,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 16,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 17,
+          "student": "Biggs, Sean",
+          "rosterIndex": 2,
+          "studentNumber": "50217",
+          "matchedRosterName": "Biggs, Sean L",
+          "grade": "07",
+          "startDate": "2026-02-23"
+        },
+        {
+          "seatId": 18,
+          "student": "Montgomery, Austin",
+          "rosterIndex": 16,
+          "studentNumber": "71649",
+          "matchedRosterName": "Montgomery, Austin C",
+          "grade": "07"
+        },
+        {
+          "seatId": 19,
+          "student": "Woods, Keola",
+          "rosterIndex": 24,
+          "studentNumber": "78635",
+          "matchedRosterName": "Woods, Keola E",
+          "grade": "07",
+          "startDate": "2026-04-14"
+        },
+        {
+          "seatId": 20,
+          "student": "Cochran, Owen",
+          "rosterIndex": 6,
+          "studentNumber": "71546",
+          "matchedRosterName": "Cochran, Owen",
+          "grade": "07"
+        },
+        {
+          "seatId": 21,
+          "student": "Caputo, Joseph",
+          "rosterIndex": 3,
+          "studentNumber": "75118",
+          "matchedRosterName": "Caputo, Joseph V",
+          "grade": "07"
+        },
+        {
+          "seatId": 22,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 23,
+          "student": "Kadosh, Liviya",
+          "rosterIndex": 10,
+          "studentNumber": "72012",
+          "matchedRosterName": "Kadosh, Liviya",
+          "grade": "07"
+        },
+        {
+          "seatId": 24,
+          "student": "Longstein, Emma",
+          "rosterIndex": 14,
+          "studentNumber": "70577",
+          "matchedRosterName": "Longstein, Emma J",
+          "grade": "07"
+        },
+        {
+          "seatId": 25,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 26,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 27,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 28,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 29,
+          "student": "Pierce, Abigail (Abby)",
+          "rosterIndex": 17,
+          "studentNumber": "72361",
+          "matchedRosterName": "Pierce, Abby G",
+          "grade": "07"
+        },
+        {
+          "seatId": 30,
+          "student": "Hall, Kenny",
+          "rosterIndex": 7,
+          "studentNumber": "72094",
+          "matchedRosterName": "Hall, Kenny R",
+          "grade": "07"
+        },
+        {
+          "seatId": 31,
+          "student": "Tucker, Lucy",
+          "rosterIndex": 21,
+          "studentNumber": "72390",
+          "matchedRosterName": "Tucker, Lucy P",
+          "grade": "07"
+        },
+        {
+          "seatId": 32,
+          "student": "Suvanto, Lilah",
+          "rosterIndex": 20,
+          "studentNumber": "72037",
+          "matchedRosterName": "Suvanto, Lilah",
+          "grade": "07"
+        },
+        {
+          "seatId": 33,
+          "student": "Cerda, Cecilia (Cc)",
+          "rosterIndex": 4,
+          "studentNumber": "70376",
+          "matchedRosterName": "Cerda, Cc S",
+          "grade": "07"
+        },
+        {
+          "seatId": 34,
+          "student": "Steele, Danny",
+          "rosterIndex": 19,
+          "studentNumber": "72380",
+          "matchedRosterName": "Steele, Danny",
+          "grade": "07"
+        },
+        {
+          "seatId": 35,
+          "student": "Lorts, Tegan",
+          "rosterIndex": 15,
+          "studentNumber": "71847",
+          "matchedRosterName": "Lorts, Tegan",
+          "grade": "07"
+        },
+        {
+          "seatId": 36,
+          "student": "Beck, Legend",
+          "rosterIndex": 1,
+          "studentNumber": "71473",
+          "matchedRosterName": "Beck, Legend Q",
+          "grade": "07"
+        }
+      ],
+      "courseCode": "JR.SC7.22.01-3",
+      "room": "501",
+      "term": "S2",
+      "schedule": {
+        "fullDay": "11:47AM-1:11PM",
+        "wedHr": "11:53AM-1:15PM",
+        "halfDay": "10:39AM-11:48AM"
+      },
+      "activeStudents": 24
+    },
+    "period6": {
+      "source": "6thhourprintout.pdf",
+      "classLabel": "JR Science 7-B",
+      "assignments": [
+        {
+          "seatId": 1,
+          "student": "Monti, Violet",
+          "rosterIndex": 25,
+          "studentNumber": "71895",
+          "matchedRosterName": "Monti, Violet A",
+          "grade": "07"
+        },
+        {
+          "seatId": 2,
+          "student": "Holland, Aubrey",
+          "rosterIndex": 13,
+          "studentNumber": "53894",
+          "matchedRosterName": "Holland, Aubrey J",
+          "grade": "07"
+        },
+        {
+          "seatId": 3,
+          "student": "Riley, Nora",
+          "rosterIndex": 29,
+          "studentNumber": "72366",
+          "matchedRosterName": "Riley, Nora",
+          "grade": "07"
+        },
+        {
+          "seatId": 4,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 5,
+          "student": "Gordon, Regan (Rey)",
+          "rosterIndex": 11,
+          "studentNumber": "53672",
+          "matchedRosterName": "Gordon, Rey E",
+          "grade": "07"
+        },
+        {
+          "seatId": 6,
+          "student": "Brooks, Rockwell (Rocky)",
+          "rosterIndex": 3,
+          "studentNumber": "52147",
+          "matchedRosterName": "Brooks, Rocky M",
+          "grade": "07"
+        },
+        {
+          "seatId": 7,
+          "student": "Luna, Destiny",
+          "rosterIndex": 22,
+          "studentNumber": "74151",
+          "matchedRosterName": "Luna, Destiny L",
+          "grade": "07"
+        },
+        {
+          "seatId": 8,
+          "student": "Gavino Ruiz, Guillermo",
+          "rosterIndex": 10,
+          "studentNumber": "70435",
+          "matchedRosterName": "Gavino Ruiz, Guillermo",
+          "grade": "07"
+        },
+        {
+          "seatId": 9,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 10,
+          "student": "Kent, Ivy",
+          "rosterIndex": 15,
+          "studentNumber": "74065",
+          "matchedRosterName": "Kent, Ivy",
+          "grade": "07"
+        },
+        {
+          "seatId": 11,
+          "student": "Wenndt, Josephine",
+          "rosterIndex": 32,
+          "studentNumber": "72395",
+          "matchedRosterName": "Wenndt, Josephine",
+          "grade": "07"
+        },
+        {
+          "seatId": 12,
+          "student": "Lopez, Samuel (Sammy)",
+          "rosterIndex": 21,
+          "studentNumber": "75212",
+          "matchedRosterName": "Lopez, Sammy A",
+          "grade": "07"
+        },
+        {
+          "seatId": 13,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 14,
+          "student": "Nickels, Sean",
+          "rosterIndex": 27,
+          "studentNumber": "74234",
+          "matchedRosterName": "Nickels, Sean M",
+          "grade": "07"
+        },
+        {
+          "seatId": 15,
+          "student": "Fielden, Grayson",
+          "rosterIndex": 9,
+          "studentNumber": "63131",
+          "matchedRosterName": "Fielden, Grayson M",
+          "grade": "07"
+        },
+        {
+          "seatId": 16,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 17,
+          "student": "Martinez, Tatum",
+          "rosterIndex": 24,
+          "studentNumber": "75145",
+          "matchedRosterName": "Martinez, Tatum G",
+          "grade": "07"
+        },
+        {
+          "seatId": 18,
+          "student": "Lebers, Gianna (GG)",
+          "rosterIndex": 18,
+          "studentNumber": "73741",
+          "matchedRosterName": "Lebers, GG G",
+          "grade": "07"
+        },
+        {
+          "seatId": 19,
+          "student": "Deehr, Cameron",
+          "rosterIndex": 8,
+          "studentNumber": "74518",
+          "matchedRosterName": "Deehr, Cameron",
+          "grade": "07"
+        },
+        {
+          "seatId": 20,
+          "student": "Campbell, Deborah",
+          "rosterIndex": 4,
+          "studentNumber": "54056",
+          "matchedRosterName": "Campbell, Deborah G",
+          "grade": "07"
+        },
+        {
+          "seatId": 21,
+          "student": "Simpson, Benjamin (Ben)",
+          "rosterIndex": 30,
+          "studentNumber": "72377",
+          "matchedRosterName": "Simpson, Ben",
+          "grade": "07"
+        },
+        {
+          "seatId": 22,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 23,
+          "student": "Kuraya, Harley",
+          "rosterIndex": 17,
+          "studentNumber": "71799",
+          "matchedRosterName": "Kuraya, Harley",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 24,
+          "student": "Babar, Haris",
+          "rosterIndex": 1,
+          "studentNumber": "71463",
+          "matchedRosterName": "Babar, Haris A",
+          "grade": "07",
+          "startDate": "2026-01-05"
+        },
+        {
+          "seatId": 25,
+          "student": "Jones-Lynn, Bryson",
+          "rosterIndex": 14,
+          "studentNumber": "74152",
+          "matchedRosterName": "Jones-Lynn, Bryson",
+          "grade": "07"
+        },
+        {
+          "seatId": 26,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 27,
+          "student": "Beals, Talon",
+          "rosterIndex": 2,
+          "studentNumber": "71468",
+          "matchedRosterName": "Beals, Talon",
+          "grade": "07"
+        },
+        {
+          "seatId": 28,
+          "student": "Malone, Breanna",
+          "rosterIndex": 23,
+          "studentNumber": "71859",
+          "matchedRosterName": "Malone, Breanna",
+          "grade": "07"
+        },
+        {
+          "seatId": 29,
+          "student": null,
+          "rosterIndex": null,
+          "studentNumber": null,
+          "matchedRosterName": null
+        },
+        {
+          "seatId": 30,
+          "student": "Lindmark, Hayden",
+          "rosterIndex": 20,
+          "studentNumber": "71841",
+          "matchedRosterName": "Lindmark, Hayden C",
+          "grade": "07"
+        },
+        {
+          "seatId": 31,
+          "student": "Hazelett, Masyn",
+          "rosterIndex": 12,
+          "studentNumber": "71744",
+          "matchedRosterName": "Hazelett, Masyn T",
+          "grade": "07"
+        },
+        {
+          "seatId": 32,
+          "student": "Wei, RuiTing",
+          "rosterIndex": 31,
+          "studentNumber": "72394",
+          "matchedRosterName": "Wei, RuiTing",
+          "grade": "07"
+        },
+        {
+          "seatId": 33,
+          "student": "Cowie, Faith",
+          "rosterIndex": 5,
+          "studentNumber": "61800",
+          "matchedRosterName": "Cowie, Faith S",
+          "grade": "07"
+        },
+        {
+          "seatId": 34,
+          "student": "Mrgudich, Nathan",
+          "rosterIndex": 26,
+          "studentNumber": "72084",
+          "matchedRosterName": "Mrgudich, Nathan S",
+          "grade": "07"
+        },
+        {
+          "seatId": 35,
+          "student": "Dahl, Grace",
+          "rosterIndex": 7,
+          "studentNumber": "71580",
+          "matchedRosterName": "Dahl, Grace M",
+          "grade": "07"
+        },
+        {
+          "seatId": 36,
+          "student": "Peterson, Rae-Lynn",
+          "rosterIndex": 28,
+          "studentNumber": "72358",
+          "matchedRosterName": "Peterson, Rae-Lynn R",
+          "grade": "07"
+        }
+      ],
+      "courseCode": "JR.SC7.22.01-106",
+      "room": "501",
+      "term": "S2",
+      "schedule": {
+        "fullDay": "1:11PM-2:03PM",
+        "wedHr": "1:15PM-2:05PM",
+        "halfDay": "11:48AM-12:24PM"
+      },
+      "activeStudents": 32
+    }
+  }
+}

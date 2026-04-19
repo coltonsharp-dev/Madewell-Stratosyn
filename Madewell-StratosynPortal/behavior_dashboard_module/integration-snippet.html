@@ -1,0 +1,21 @@
+<!-- 1) Add this wrapper exactly where you want the dashboard to appear -->
+<div id="behaviorDashboardMount"></div>
+
+<!-- 2) Load the stylesheet once -->
+<link rel="stylesheet" href="path/to/behavior-dashboard.css" />
+
+<!-- 3) Load the script once, near the end of the page -->
+<script src="path/to/behavior-dashboard.js"></script>
+
+<!-- 4) Mount the dashboard -->
+<script>
+  window.behaviorDashboard = BehaviorBentoDashboard.mount("#behaviorDashboardMount", {
+    storageKey: "seating_viewer_behavior_log_v1",
+    title: "Classroom Signal Deck",
+    subtitle: "Live behavior visualization fed from localStorage."
+  });
+
+  // Optional:
+  // behaviorDashboard.setEvents(yourEventArray);
+  // behaviorDashboard.refresh();
+</script>
