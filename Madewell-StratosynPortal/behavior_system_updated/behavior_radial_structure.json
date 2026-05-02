@@ -1,0 +1,527 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": "behavior-radial-prototype",
+  "description": "Structured behavior model for a split radial menu. Left side logs concerns. Right side logs recovery/expected behavior. Center click opens categories; category click opens behaviors.",
+  "uiModel": {
+    "interactionPattern": "two_step_split_radial",
+    "centerTrigger": {
+      "label": "Behavior",
+      "icon": "fa-solid fa-bullseye",
+      "opens": "category_ring"
+    },
+    "ringOrder": [
+      "category_ring",
+      "behavior_ring"
+    ],
+    "categoryRing": {
+      "leftSide": {
+        "modeId": "concern",
+        "label": "Concern",
+        "description": "Use when a student demonstrates a behavior that needs correction.",
+        "accentToken": "warning"
+      },
+      "rightSide": {
+        "modeId": "recovery",
+        "label": "Recovery",
+        "description": "Use when a student corrects behavior, complies, resets, or demonstrates the expected behavior after redirection.",
+        "accentToken": "info"
+      }
+    },
+    "behaviorRing": {
+      "description": "Second ring shows behaviors belonging to the selected category and mode."
+    }
+  },
+  "loggingModel": {
+    "eventTypes": [
+      "concern",
+      "recovery"
+    ],
+    "defaultScoreBehavior": {
+      "concern": -1,
+      "recovery": 1
+    },
+    "requiredFields": [
+      "studentId",
+      "studentName",
+      "periodId",
+      "seatId",
+      "modeId",
+      "categoryId",
+      "behaviorId",
+      "timestamp"
+    ],
+    "optionalFields": [
+      "teacherId",
+      "teacherName",
+      "tableId",
+      "zone",
+      "position",
+      "note",
+      "severity",
+      "source"
+    ]
+  },
+  "categories": [
+    {
+      "categoryId": "respect",
+      "sortOrder": 1,
+      "label": "Respect",
+      "icon": "fa-solid fa-handshake",
+      "modes": {
+        "concern": {
+          "label": "Respect Concern",
+          "behaviors": [
+            {
+              "behaviorId": "disrespectful_tone",
+              "label": "Disrespectful Tone",
+              "shortLabel": "Tone",
+              "icon": "fa-solid fa-comment-slash",
+              "score": -1
+            },
+            {
+              "behaviorId": "inappropriate_language",
+              "label": "Inappropriate Language",
+              "shortLabel": "Language",
+              "icon": "fa-solid fa-face-angry",
+              "score": -1
+            },
+            {
+              "behaviorId": "peer_conflict",
+              "label": "Peer Conflict",
+              "shortLabel": "Conflict",
+              "icon": "fa-solid fa-people-arrows",
+              "score": -1
+            }
+          ]
+        },
+        "recovery": {
+          "label": "Respect Recovery",
+          "behaviors": [
+            {
+              "behaviorId": "respectful_tone",
+              "label": "Respectful Tone",
+              "shortLabel": "Tone Reset",
+              "icon": "fa-solid fa-comment",
+              "score": 1
+            },
+            {
+              "behaviorId": "appropriate_language",
+              "label": "Appropriate Language",
+              "shortLabel": "Language Reset",
+              "icon": "fa-solid fa-comments",
+              "score": 1
+            },
+            {
+              "behaviorId": "positive_peer_interaction",
+              "label": "Positive Peer Interaction",
+              "shortLabel": "Peer Reset",
+              "icon": "fa-solid fa-people-group",
+              "score": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "categoryId": "accountability",
+      "sortOrder": 2,
+      "label": "Accountability",
+      "icon": "fa-solid fa-clipboard-check",
+      "modes": {
+        "concern": {
+          "label": "Accountability Concern",
+          "behaviors": [
+            {
+              "behaviorId": "off_task",
+              "label": "Off Task",
+              "shortLabel": "Off Task",
+              "icon": "fa-regular fa-eye-slash",
+              "score": -1
+            },
+            {
+              "behaviorId": "out_of_seat",
+              "label": "Out of Seat",
+              "shortLabel": "Out of Seat",
+              "icon": "fa-solid fa-person-walking",
+              "score": -1
+            },
+            {
+              "behaviorId": "unprepared",
+              "label": "Unprepared",
+              "shortLabel": "Unprepared",
+              "icon": "fa-solid fa-book-open-reader",
+              "score": -1
+            },
+            {
+              "behaviorId": "not_following_directions",
+              "label": "Not Following Directions",
+              "shortLabel": "Directions",
+              "icon": "fa-solid fa-list-check",
+              "score": -1
+            }
+          ]
+        },
+        "recovery": {
+          "label": "Accountability Recovery",
+          "behaviors": [
+            {
+              "behaviorId": "on_task",
+              "label": "On Task",
+              "shortLabel": "On Task",
+              "icon": "fa-solid fa-eye",
+              "score": 1
+            },
+            {
+              "behaviorId": "in_seat",
+              "label": "Returned to Seat",
+              "shortLabel": "In Seat",
+              "icon": "fa-solid fa-chair",
+              "score": 1
+            },
+            {
+              "behaviorId": "prepared",
+              "label": "Prepared",
+              "shortLabel": "Prepared",
+              "icon": "fa-solid fa-book",
+              "score": 1
+            },
+            {
+              "behaviorId": "followed_directions",
+              "label": "Followed Directions",
+              "shortLabel": "Directions Met",
+              "icon": "fa-solid fa-check-double",
+              "score": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "categoryId": "integrity",
+      "sortOrder": 3,
+      "label": "Integrity",
+      "icon": "fa-solid fa-shield-heart",
+      "modes": {
+        "concern": {
+          "label": "Integrity Concern",
+          "behaviors": [
+            {
+              "behaviorId": "cheating",
+              "label": "Cheating",
+              "shortLabel": "Cheating",
+              "icon": "fa-solid fa-file-circle-xmark",
+              "score": -1
+            },
+            {
+              "behaviorId": "lying",
+              "label": "Lying",
+              "shortLabel": "Lying",
+              "icon": "fa-solid fa-mask",
+              "score": -1
+            },
+            {
+              "behaviorId": "misuse_of_technology",
+              "label": "Misuse of Technology",
+              "shortLabel": "Tech Misuse",
+              "icon": "fa-solid fa-laptop-code",
+              "score": -1
+            }
+          ]
+        },
+        "recovery": {
+          "label": "Integrity Recovery",
+          "behaviors": [
+            {
+              "behaviorId": "honest_response",
+              "label": "Honest Response",
+              "shortLabel": "Honest",
+              "icon": "fa-solid fa-comment-dots",
+              "score": 1
+            },
+            {
+              "behaviorId": "academic_honesty",
+              "label": "Academic Honesty",
+              "shortLabel": "Honesty",
+              "icon": "fa-solid fa-file-circle-check",
+              "score": 1
+            },
+            {
+              "behaviorId": "appropriate_technology_use",
+              "label": "Appropriate Technology Use",
+              "shortLabel": "Tech Reset",
+              "icon": "fa-solid fa-laptop",
+              "score": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "categoryId": "disruption",
+      "sortOrder": 4,
+      "label": "Disruption",
+      "icon": "fa-solid fa-bullhorn",
+      "modes": {
+        "concern": {
+          "label": "Disruption Concern",
+          "behaviors": [
+            {
+              "behaviorId": "talking_out",
+              "label": "Talking Out",
+              "shortLabel": "Talking Out",
+              "icon": "fa-solid fa-comment-medical",
+              "score": -1
+            },
+            {
+              "behaviorId": "interrupting_lesson",
+              "label": "Interrupting Lesson",
+              "shortLabel": "Interrupting",
+              "icon": "fa-solid fa-person-circle-xmark",
+              "score": -1
+            },
+            {
+              "behaviorId": "causing_distractions",
+              "label": "Causing Distractions",
+              "shortLabel": "Distractions",
+              "icon": "fa-solid fa-burst",
+              "score": -1
+            }
+          ]
+        },
+        "recovery": {
+          "label": "Disruption Recovery",
+          "behaviors": [
+            {
+              "behaviorId": "waiting_turn",
+              "label": "Waiting Turn",
+              "shortLabel": "Waited Turn",
+              "icon": "fa-solid fa-hourglass-half",
+              "score": 1
+            },
+            {
+              "behaviorId": "listening_appropriately",
+              "label": "Listening Appropriately",
+              "shortLabel": "Listening",
+              "icon": "fa-solid fa-ear-listen",
+              "score": 1
+            },
+            {
+              "behaviorId": "focused_participation",
+              "label": "Focused Participation",
+              "shortLabel": "Focused",
+              "icon": "fa-solid fa-user-check",
+              "score": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "categoryId": "compliance",
+      "sortOrder": 5,
+      "label": "Compliance",
+      "icon": "fa-solid fa-scale-balanced",
+      "modes": {
+        "concern": {
+          "label": "Compliance Concern",
+          "behaviors": [
+            {
+              "behaviorId": "refusal_to_work",
+              "label": "Refusal to Work",
+              "shortLabel": "Refusal",
+              "icon": "fa-solid fa-file-circle-minus",
+              "score": -1
+            },
+            {
+              "behaviorId": "arguing_with_teacher",
+              "label": "Arguing with Teacher",
+              "shortLabel": "Arguing",
+              "icon": "fa-solid fa-person-circle-exclamation",
+              "score": -1
+            },
+            {
+              "behaviorId": "non_compliance",
+              "label": "Non-Compliance",
+              "shortLabel": "Non-Compliance",
+              "icon": "fa-solid fa-ban",
+              "score": -1
+            }
+          ]
+        },
+        "recovery": {
+          "label": "Compliance Recovery",
+          "behaviors": [
+            {
+              "behaviorId": "began_work",
+              "label": "Began Work",
+              "shortLabel": "Started Work",
+              "icon": "fa-solid fa-play",
+              "score": 1
+            },
+            {
+              "behaviorId": "accepted_correction",
+              "label": "Accepted Correction",
+              "shortLabel": "Accepted",
+              "icon": "fa-solid fa-check",
+              "score": 1
+            },
+            {
+              "behaviorId": "complied_with_direction",
+              "label": "Complied with Direction",
+              "shortLabel": "Complied",
+              "icon": "fa-solid fa-check-double",
+              "score": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "categoryId": "attendance",
+      "sortOrder": 6,
+      "label": "Attendance",
+      "icon": "fa-solid fa-clock",
+      "modes": {
+        "concern": {
+          "label": "Attendance Concern",
+          "behaviors": [
+            {
+              "behaviorId": "tardy",
+              "label": "Tardy",
+              "shortLabel": "Tardy",
+              "icon": "fa-solid fa-clock-rotate-left",
+              "score": -1
+            },
+            {
+              "behaviorId": "skipping",
+              "label": "Skipping",
+              "shortLabel": "Skipping",
+              "icon": "fa-solid fa-person-running",
+              "score": -1
+            }
+          ]
+        },
+        "recovery": {
+          "label": "Attendance Recovery",
+          "behaviors": [
+            {
+              "behaviorId": "arrived_on_time",
+              "label": "Arrived on Time",
+              "shortLabel": "On Time",
+              "icon": "fa-solid fa-clock",
+              "score": 1
+            },
+            {
+              "behaviorId": "returned_promptly",
+              "label": "Returned Promptly",
+              "shortLabel": "Returned",
+              "icon": "fa-solid fa-rotate-left",
+              "score": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "categoryId": "dress_code",
+      "sortOrder": 7,
+      "label": "Dress Code",
+      "icon": "fa-solid fa-shirt",
+      "modes": {
+        "concern": {
+          "label": "Dress Code Concern",
+          "behaviors": [
+            {
+              "behaviorId": "shirt_violation",
+              "label": "Shirt Violation",
+              "shortLabel": "Shirt",
+              "icon": "fa-solid fa-shirt",
+              "score": -1
+            },
+            {
+              "behaviorId": "pants_violation",
+              "label": "Pants Violation",
+              "shortLabel": "Pants",
+              "icon": "fa-solid fa-socks",
+              "score": -1
+            },
+            {
+              "behaviorId": "shoes_violation",
+              "label": "Shoes Violation",
+              "shortLabel": "Shoes",
+              "icon": "fa-solid fa-shoe-prints",
+              "score": -1
+            },
+            {
+              "behaviorId": "grooming_violation",
+              "label": "Grooming Violation",
+              "shortLabel": "Grooming",
+              "icon": "fa-solid fa-scissors",
+              "score": -1
+            }
+          ]
+        },
+        "recovery": {
+          "label": "Dress Code Recovery",
+          "behaviors": [
+            {
+              "behaviorId": "dress_corrected",
+              "label": "Dress Corrected",
+              "shortLabel": "Corrected",
+              "icon": "fa-solid fa-check",
+              "score": 1
+            },
+            {
+              "behaviorId": "uniform_compliant",
+              "label": "Uniform Compliant",
+              "shortLabel": "Compliant",
+              "icon": "fa-solid fa-badge-check",
+              "score": 1
+            },
+            {
+              "behaviorId": "grooming_corrected",
+              "label": "Grooming Corrected",
+              "shortLabel": "Grooming Reset",
+              "icon": "fa-solid fa-user-check",
+              "score": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "examples": {
+    "eventExample": {
+      "studentId": "74108",
+      "studentName": "Alexander Bryan",
+      "periodId": "period4",
+      "seatId": 12,
+      "tableId": 3,
+      "zone": "front_right",
+      "position": "bottom_right",
+      "modeId": "concern",
+      "categoryId": "accountability",
+      "behaviorId": "out_of_seat",
+      "timestamp": "2026-04-16T19:30:00.000Z",
+      "note": "",
+      "severity": "standard",
+      "source": "radial_menu"
+    },
+    "recoveryExample": {
+      "studentId": "74108",
+      "studentName": "Alexander Bryan",
+      "periodId": "period4",
+      "seatId": 12,
+      "tableId": 3,
+      "zone": "front_right",
+      "position": "bottom_right",
+      "modeId": "recovery",
+      "categoryId": "accountability",
+      "behaviorId": "in_seat",
+      "timestamp": "2026-04-16T19:31:14.000Z",
+      "note": "Returned after redirection",
+      "severity": "standard",
+      "source": "radial_menu"
+    }
+  }
+}

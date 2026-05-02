@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behavior Dashboard Module Demo</title>
+  <link rel="stylesheet" href="./behavior-dashboard.css" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #06101f;
+      padding: 24px;
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    .page-shell {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    /* Back button container */
+    .top-nav {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 16px;
+    }
+
+    /* Match your ghost button style */
+    .ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(6px);
+    }
+
+    .ghost-btn:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-shell">
+
+    <!-- 🔙 Back Button -->
+    <div class="top-nav">
+      <a href="../index.html" class="ghost-btn">
+        ← Back to Seating Dashboard
+      </a>
+    </div>
+
+    <!-- Dashboard Mount -->
+    <div id="behaviorDashboardMount"></div>
+
+  </div>
+
+  <script src="./behavior-dashboard.js"></script>
+  <script>
+    window.behaviorDashboard = BehaviorBentoDashboard.mount("#behaviorDashboardMount", {
+      title: "Classroom Signal Deck",
+      subtitle: "Drop-in bento dashboard wrapper for localStorage-based behavior tracking."
+    });
+  </script>
+</body>
+</html>

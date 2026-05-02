@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Stratosyn — Final Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════ TOKENS — CANONICAL HANDOFF ═══════════════════ */
+:root {
+  --void:  #06080f;
+  --d1:    #0b0f1e;
+  --d2:    #111828;
+  --glass: rgba(255,255,255,0.044);
+  --shine: rgba(255,255,255,0.15);
+  --b:     rgba(255,255,255,0.07);
+  --b-hi:  rgba(255,255,255,0.16);
+  --gold:  #f5c842;  --gold-r:  245,200,66;
+  --cyan:  #00e5ff;  --cyan-r:  0,229,255;
+  --pearl: #b8cfff;  --pearl-r: 184,207,255;
+  --green: #3effa0;  --green-r: 62,255,160;
+  --red:   #f87171;  --red-r:   248,113,113;
+  --tx:  #dde6f5;
+  --tx2: #8898b8;
+  --tx3: #4a5570;
+  --fd: 'Syne', sans-serif;
+  --fm: 'DM Mono', monospace;
+}
+html { font-size: clamp(17px, 1vw + 14px, 22px); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body {
+  background: var(--void); color: var(--tx);
+  font-family: var(--fm);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ═══ DOT GRID ═══ */
+body::before {
+  content:''; position:fixed; inset:0; z-index:0;
+  background-image: radial-gradient(rgba(255,255,255,0.028) 1px, transparent 1px);
+  background-size: 28px 28px; pointer-events:none;
+  animation: gridDrift 90s linear infinite;
+}
+@keyframes gridDrift { from { background-position:0 0; } to { background-position:28px 28px; } }
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes bmPulse0 { 0%,100%{opacity:1;box-shadow:0 0 5px rgba(var(--gold-r),.5)} 50%{opacity:.78;box-shadow:0 0 11px rgba(var(--gold-r),.85)} }
+@keyframes bmPulse1 { 0%,100%{opacity:1;box-shadow:0 0 5px rgba(var(--cyan-r),.5)} 50%{opacity:.78;box-shadow:0 0 13px rgba(var(--cyan-r),.9)} }
+@keyframes bmPulse2 { 0%,100%{opacity:1;box-shadow:0 0 5px rgba(var(--pearl-r),.5)} 50%{opacity:.78;box-shadow:0 0 11px rgba(var(--pearl-r),.8)} }
+@keyframes floatMark {
+  0%  {transform:rotateY(0deg) rotateX(3deg)}
+  25% {transform:rotateY(6deg) rotateX(-2deg)}
+  50% {transform:rotateY(0deg) rotateX(-3deg)}
+  75% {transform:rotateY(-6deg) rotateX(2deg)}
+  100%{transform:rotateY(0deg) rotateX(3deg)}
+}
+@keyframes livePulse { 0%,100%{opacity:.45;transform:scale(1)} 50%{opacity:1;transform:scale(1.5)} }
+@keyframes heroBloom { 0%{transform:scale(.85);opacity:0} 60%{transform:scale(1.06);opacity:1} 100%{transform:scale(1);opacity:1} }
+@keyframes slideUp   { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+@keyframes lbIn      { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+@keyframes barFill   { from{width:0} }
+@keyframes nowGlow   { 0%,100%{box-shadow:inset 0 0 0 1px rgba(var(--cyan-r),.6),0 0 18px rgba(var(--cyan-r),.28)} 50%{box-shadow:inset 0 0 0 1.5px rgba(var(--cyan-r),1),0 0 30px rgba(var(--cyan-r),.52)} }
+@keyframes goldGlow  { 0%,100%{box-shadow:inset 0 0 0 1px rgba(var(--gold-r),.5),0 0 14px rgba(var(--gold-r),.22)} 50%{box-shadow:inset 0 0 0 1.5px rgba(var(--gold-r),.9),0 0 26px rgba(var(--gold-r),.46)} }
+@keyframes pearlGlow { 0%,100%{box-shadow:inset 0 0 0 1px rgba(var(--pearl-r),.4),0 0 12px rgba(var(--pearl-r),.18)} 50%{box-shadow:inset 0 0 0 1.5px rgba(var(--pearl-r),.8),0 0 22px rgba(var(--pearl-r),.4)} }
+
+/* ═══════════════════ BOOT GATE ═══════════════════ */
+#gate {
+  position:fixed; inset:0; z-index:500;
+  background:var(--void);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:2rem;
+  transition:opacity .9s ease;
+}
+#gate.out { opacity:0; pointer-events:none; }
+
+.boot-mark {
+  display:grid;
+  grid-template-columns:repeat(3,22px);
+  grid-template-rows:repeat(3,22px);
+  gap:4px;
+  animation:floatMark 14s ease-in-out infinite;
+  transform-style:preserve-3d;
+}
+.bm { border-radius:3px; position:relative; overflow:hidden; }
+.bm::after { content:''; position:absolute; inset:0; background:linear-gradient(138deg,rgba(255,255,255,.22) 0%,transparent 55%); }
+.bm[data-r="0"] { background:var(--gold);  animation:bmPulse0 3.2s ease-in-out infinite; }
+.bm[data-r="1"] { background:var(--cyan);  animation:bmPulse1 2.8s ease-in-out infinite; }
+.bm[data-r="2"] { background:var(--pearl); animation:bmPulse2 3.5s ease-in-out infinite; }
+
+.g-name {
+  font-family:var(--fd); font-weight:800;
+  font-size:clamp(1.6rem,4vw,2.4rem);
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--tx); line-height:1;
+}
+.g-sub {
+  font-family:var(--fm); font-size:.46rem;
+  letter-spacing:.38em; text-transform:uppercase;
+  color:var(--cyan); margin-top:.3rem;
+}
+
+.g-lines { display:flex; flex-direction:column; gap:.5rem; min-width:300px; }
+.lb {
+  display:flex; gap:.4rem; align-items:center;
+  font-family:var(--fm); font-size:.44rem;
+  letter-spacing:.16em; opacity:0;
+}
+.lb.in { animation:lbIn .35s ease forwards; }
+.lk { color:var(--tx3); }
+.ld { color:var(--tx3); flex:1; }
+.ls { color:var(--cyan); }
+.ls.go { color:var(--gold); }
+.ls.gr { color:var(--green); }
+
+.g-btn {
+  font-family:var(--fd); font-weight:800;
+  font-size:.52rem; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--void); background:var(--gold);
+  border:none; border-radius:4px;
+  padding:.8rem 2.2rem; cursor:pointer;
+  box-shadow:0 0 30px rgba(var(--gold-r),.35);
+  transition:background .2s,box-shadow .2s,transform .15s;
+  opacity:0; animation:fadeIn .6s ease 2.2s forwards;
+}
+.g-btn:hover { background:#ffd84d; box-shadow:0 0 50px rgba(var(--gold-r),.55); transform:translateY(-2px); }
+
+/* ═══════════════════ TOP BAR ═══════════════════ */
+#topbar {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.65rem clamp(1rem,3vw,2rem);
+  background:rgba(6,8,15,.9);
+  backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--b);
+}
+.tb-brand { display:flex; align-items:center; gap:.55rem; }
+
+/* tiny mark for topbar */
+.bmark-xs {
+  display:grid;
+  grid-template-columns:repeat(3,9px);
+  grid-template-rows:repeat(3,9px);
+  gap:1.6px; flex-shrink:0;
+  animation:floatMark 14s ease-in-out infinite;
+  transform-style:preserve-3d;
+}
+.bmark-xs .bm { border-radius:1.5px; }
+
+.tb-name {
+  font-family:var(--fd); font-weight:800;
+  font-size:.5rem; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--tx); line-height:1;
+}
+.tb-tag {
+  font-family:var(--fm); font-size:.3rem;
+  letter-spacing:.28em; color:var(--cyan);
+}
+.tb-right { display:flex; align-items:center; gap:.8rem; }
+.ldot {
+  width:5px; height:5px; border-radius:50%;
+  background:var(--cyan); animation:livePulse 2s ease-in-out infinite;
+  box-shadow:0 0 6px rgba(var(--cyan-r),.7);
+}
+#slidectr { font-family:var(--fm); font-size:.36rem; letter-spacing:.2em; color:var(--tx3); }
+
+/* ═══════════════════ STAGE ═══════════════════ */
+#stage { position:fixed; inset:0; z-index:1; display:grid; place-items:center; }
+
+.slide {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:clamp(52px,7vh,90px) clamp(28px,7vw,110px) clamp(68px,9vh,100px);
+  opacity:0; pointer-events:none;
+  transition:opacity .55s cubic-bezier(.4,0,.2,1);
+}
+.slide.active { opacity:1; pointer-events:all; }
+
+.slide.active .ey  { animation:slideUp .5s ease .05s both; }
+.slide.active .hd  { animation:slideUp .5s ease .12s both; }
+.slide.active .su  { animation:slideUp .5s ease .2s  both; }
+.slide.active .bd  { animation:slideUp .5s ease .22s both; }
+.slide.active .gr  { animation:slideUp .5s ease .26s both; }
+.slide.active .rw  { animation:slideUp .5s ease .24s both; }
+.slide.active .mh  { animation:heroBloom .7s ease .08s both; }
+
+/* ═══ TYPOGRAPHY ═══ */
+.ey {
+  font-family:var(--fm); font-size:.46rem;
+  letter-spacing:.32em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:.95rem;
+  display:flex; align-items:center; gap:.7rem;
+}
+.ey::before { content:''; display:inline-block; width:26px; height:1px; background:var(--gold); opacity:.5; }
+
+.hd {
+  font-family:var(--fd); font-weight:800;
+  font-size:clamp(1.8rem,5vw,4rem);
+  letter-spacing:.025em; line-height:1.04;
+  color:var(--tx); text-align:center;
+  margin-bottom:.95rem; max-width:860px;
+}
+.hd .cy { color:var(--cyan); }
+.hd .go { color:var(--gold); }
+.hd .pe { color:var(--pearl); }
+
+.su {
+  font-family:var(--fm); font-size:.5rem;
+  line-height:1.85; color:var(--tx2);
+  text-align:center; max-width:620px; letter-spacing:.04em;
+}
+
+.dv { width:40px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin:.95rem auto; }
+
+/* ═══ HERO MARK ═══ */
+.mh {
+  display:grid;
+  grid-template-columns:repeat(3,clamp(24px,3.8vw,44px));
+  grid-template-rows:repeat(3,clamp(24px,3.8vw,44px));
+  gap:clamp(3px,.5vw,6px);
+  animation:floatMark 14s ease-in-out infinite;
+  transform-style:preserve-3d;
+  margin-bottom:1.6rem;
+}
+.mh .bm { border-radius:4px; }
+
+/* ═══ CARDS ═══ */
+.gr {
+  display:grid; gap:.65rem;
+  width:100%; max-width:900px; margin-top:1.2rem;
+  grid-template-columns:repeat(3,1fr);
+}
+.gr2 { grid-template-columns:repeat(2,1fr); max-width:700px; }
+.gr4 { grid-template-columns:repeat(4,1fr); max-width:960px; }
+
+.card {
+  background:var(--d1); border:1px solid var(--b);
+  border-radius:6px; padding:.9rem .85rem;
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column; gap:.35rem;
+}
+.card::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(138deg,rgba(255,255,255,.028) 0%,transparent 60%);
+  pointer-events:none;
+}
+.card.cc { border-top:1.5px solid var(--cyan); animation:nowGlow 2.8s ease-in-out infinite; }
+.card.cg { border-top:1.5px solid var(--gold); animation:goldGlow 3.2s ease-in-out infinite; }
+.card.cp { border-top:1.5px solid var(--pearl); animation:pearlGlow 3.5s ease-in-out infinite; }
+
+.cn { font-family:var(--fm); font-size:.34rem; letter-spacing:.24em; color:var(--tx3); }
+.ct { font-family:var(--fd); font-weight:800; font-size:.62rem; letter-spacing:.06em; color:var(--tx); }
+.cb { font-family:var(--fm); font-size:.4rem; line-height:1.75; color:var(--tx2); letter-spacing:.03em; }
+.cl-g { font-size:.36rem; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
+.cl-c { font-size:.36rem; letter-spacing:.24em; text-transform:uppercase; color:var(--cyan); }
+.cl-p { font-size:.36rem; letter-spacing:.24em; text-transform:uppercase; color:var(--pearl); }
+
+/* ═══ STAT ROW ═══ */
+.rw {
+  display:flex; gap:2.4rem; align-items:flex-start;
+  margin-top:1.5rem; flex-wrap:wrap; justify-content:center;
+}
+.sbl { text-align:center; }
+.sn {
+  font-family:var(--fd); font-weight:800;
+  font-size:clamp(1.5rem,3.8vw,2.8rem); line-height:1; color:var(--tx);
+}
+.sn .u { color:var(--gold); font-size:.55em; }
+.sl { font-size:.35rem; letter-spacing:.22em; text-transform:uppercase; color:var(--tx3); margin-top:.35rem; }
+
+/* ═══ POINT LIST ═══ */
+.bd {
+  list-style:none; display:flex; flex-direction:column; gap:.8rem;
+  margin-top:1.2rem; max-width:660px; width:100%;
+}
+.bd li {
+  display:flex; gap:.9rem; align-items:flex-start;
+  font-size:.48rem; line-height:1.8; color:var(--tx2); letter-spacing:.03em;
+}
+.bd li .mk { color:var(--cyan); flex-shrink:0; margin-top:.1rem; }
+.bd li strong { color:var(--tx); font-weight:500; }
+
+/* ═══ TIER STRIPS ═══ */
+.ts {
+  width:100%; max-width:780px;
+  display:flex; flex-direction:column; gap:.5rem;
+  margin-top:1.2rem;
+}
+.tr {
+  display:flex; align-items:center; gap:.85rem;
+  background:var(--glass); border:1px solid var(--b);
+  border-radius:4px; padding:.65rem .85rem; font-size:.42rem;
+}
+.tdot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.ttag { font-family:var(--fd); font-weight:800; font-size:.52rem; letter-spacing:.08em; flex:0 0 4.8rem; }
+.tbw { flex:1; height:3px; background:rgba(255,255,255,.07); border-radius:2px; overflow:hidden; }
+.tb { height:100%; border-radius:2px; animation:barFill 1s ease .4s both; }
+.tdsc { font-size:.36rem; color:var(--tx2); letter-spacing:.1em; flex-shrink:0; }
+
+/* ═══ TWO-COL ═══ */
+.tc {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1.2rem; width:100%; max-width:840px; margin-top:1.2rem;
+}
+.cll { font-size:.38rem; letter-spacing:.28em; text-transform:uppercase; margin-bottom:.6rem; }
+.clt { font-size:.44rem; line-height:1.85; color:var(--tx2); letter-spacing:.03em; }
+.clt strong { color:var(--tx); font-weight:500; }
+
+/* ═══ PIPE GRID ═══ */
+.pg {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:.75rem; width:100%; max-width:800px; margin-top:1.2rem;
+}
+.pc { background:var(--d1); border:1px solid var(--b); border-radius:6px; padding:.9rem; }
+.ph { font-family:var(--fd); font-weight:800; font-size:.58rem; letter-spacing:.08em; margin-bottom:.45rem; }
+.pi { list-style:none; display:flex; flex-direction:column; gap:.25rem; font-size:.4rem; color:var(--tx2); letter-spacing:.04em; line-height:1.7; }
+.pi li::before { content:'· '; color:var(--tx3); }
+
+/* ═══ ROADMAP ═══ */
+.rmt { display:flex; width:100%; max-width:860px; margin-top:1.4rem; }
+.rmp { flex:1; border-top:1.5px solid var(--b); padding:.8rem .7rem 0; position:relative; }
+.rmp.act { border-top-color:var(--cyan); }
+.rmp.act::before { content:''; position:absolute; top:-5px; left:0; width:9px; height:9px; background:var(--cyan); border-radius:50%; box-shadow:0 0 10px rgba(var(--cyan-r),.7); }
+.rpl { font-size:.36rem; letter-spacing:.22em; text-transform:uppercase; color:var(--tx3); margin-bottom:.4rem; }
+.rmp.act .rpl { color:var(--cyan); }
+.rpt { font-family:var(--fd); font-weight:800; font-size:.58rem; margin-bottom:.4rem; }
+.rpi { list-style:none; font-size:.38rem; color:var(--tx2); line-height:2; letter-spacing:.04em; }
+
+/* ═══ BOOT UI panel ═══ */
+.bui {
+  background:var(--d1); border:1px solid var(--b);
+  border-radius:6px; padding:1rem 1.2rem;
+  width:100%; max-width:580px; margin-top:1.2rem;
+}
+.bul {
+  display:flex; gap:.45rem; align-items:center;
+  font-family:var(--fm); font-size:.4rem; letter-spacing:.14em;
+  padding:.2rem 0; border-bottom:1px solid var(--b);
+}
+.bul:last-child { border-bottom:none; }
+.blk { color:var(--tx3); flex:1; }
+.bld { color:var(--tx3); }
+.bls { color:var(--cyan); }
+.bls.go { color:var(--gold); }
+.bls.gr { color:var(--green); }
+
+/* ═══ MARK LEGEND ═══ */
+.ml { display:flex; gap:1.8rem; margin-top:1.2rem; justify-content:center; flex-wrap:wrap; }
+.mli { display:flex; align-items:center; gap:.55rem; }
+.mls { width:10px; height:10px; border-radius:2px; }
+.mll { font-size:.4rem; letter-spacing:.18em; color:var(--tx2); }
+
+/* ═══ CORNERS ═══ */
+.ctlx,.cbrx { position:absolute; width:34px; height:34px; pointer-events:none; }
+.ctlx { top:clamp(52px,7vh,82px); left:clamp(22px,3vw,46px); border-top:1px solid rgba(var(--gold-r),.18); border-left:1px solid rgba(var(--gold-r),.18); }
+.cbrx { bottom:clamp(58px,8vh,88px); right:clamp(22px,3vw,46px); border-bottom:1px solid rgba(var(--gold-r),.18); border-right:1px solid rgba(var(--gold-r),.18); }
+
+/* ═══ HUD ═══ */
+#hud {
+  position:fixed; bottom:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; gap:.9rem;
+  padding:.8rem clamp(1rem,3vw,2rem);
+  background:linear-gradient(to top,rgba(6,8,15,.97),transparent);
+}
+#pt { flex:1; height:2px; background:var(--b); border-radius:2px; cursor:pointer; }
+#pf { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--gold),var(--cyan)); width:0%; transition:width .3s linear; }
+#pbtn {
+  width:28px; height:28px; flex-shrink:0;
+  background:var(--glass); border:1px solid var(--b);
+  border-radius:50%; cursor:pointer; display:grid; place-items:center;
+  transition:border-color .2s,background .2s;
+}
+#pbtn:hover { border-color:var(--gold); background:rgba(var(--gold-r),.08); }
+#pbtn svg { fill:var(--tx); width:10px; height:10px; }
+#td { font-family:var(--fm); font-size:.36rem; letter-spacing:.18em; color:var(--tx3); flex-shrink:0; min-width:75px; text-align:right; }
+
+/* ═══ DOT NAV ═══ */
+#dotnav {
+  position:fixed; bottom:2.5rem; left:50%;
+  transform:translateX(-50%); z-index:101;
+  display:flex; gap:5px; align-items:center;
+}
+.dd { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.1); cursor:pointer; transition:background .3s,width .3s; }
+.dd.a { background:var(--gold); width:14px; border-radius:2px; }
+
+#kbhint {
+  position:fixed; bottom:3.5rem; right:1.8rem; z-index:101;
+  font-family:var(--fm); font-size:.3rem; letter-spacing:.16em; color:var(--tx3);
+  display:flex; gap:.5rem; opacity:0; animation:fadeIn .5s ease 3s forwards;
+}
+.kb { background:var(--glass); border:1px solid var(--b); border-radius:3px; padding:1px 4px; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:720px) {
+  .gr,.pg,.tc { grid-template-columns:1fr; }
+  .gr4 { grid-template-columns:repeat(2,1fr); }
+  .rmt { flex-direction:column; }
+  .rw { gap:1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<audio id="audio" preload="auto">
+  <source src="FinalPresentationaudio.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ═══ BOOT GATE ═══ -->
+<div id="gate">
+  <div class="boot-mark">
+    <div class="bm" data-r="0"></div><div class="bm" data-r="0"></div><div class="bm" data-r="0"></div>
+    <div class="bm" data-r="1"></div><div class="bm" data-r="1"></div><div class="bm" data-r="1"></div>
+    <div class="bm" data-r="2"></div><div class="bm" data-r="2"></div><div class="bm" data-r="2"></div>
+  </div>
+  <div style="text-align:center">
+    <div class="g-name">STRATOSYN</div>
+    <div class="g-sub">CLASSROOM INTELLIGENCE</div>
+  </div>
+  <div class="g-lines">
+    <div class="lb" id="bl0"><span class="lk">[BOOT SEQUENCE]</span><span class="ld">·············</span><span class="ls">OK</span></div>
+    <div class="lb" id="bl1"><span class="lk">[SECURITY LAYER]</span><span class="ld">···········</span><span class="ls gr">ACTIVE</span></div>
+    <div class="lb" id="bl2"><span class="lk">[DATA PIPELINE]</span><span class="ld">············</span><span class="ls">CONNECTED</span></div>
+    <div class="lb" id="bl3"><span class="lk">[BEHAVIOR ENGINE]</span><span class="ld">··········</span><span class="ls">READY</span></div>
+    <div class="lb" id="bl4"><span class="lk">[PRESENTATION]</span><span class="ld">·············</span><span class="ls go">LOADED</span></div>
+  </div>
+  <button class="g-btn" id="gbtn">▶ BEGIN PRESENTATION</button>
+</div>
+
+<!-- ═══ TOP BAR ═══ -->
+<div id="topbar">
+  <div class="tb-brand">
+    <div class="bmark-xs">
+      <div class="bm" data-r="0"></div><div class="bm" data-r="0"></div><div class="bm" data-r="0"></div>
+      <div class="bm" data-r="1"></div><div class="bm" data-r="1"></div><div class="bm" data-r="1"></div>
+      <div class="bm" data-r="2"></div><div class="bm" data-r="2"></div><div class="bm" data-r="2"></div>
+    </div>
+    <div>
+      <div class="tb-name">STRATOSYN</div>
+      <div class="tb-tag">CLASSROOM INTELLIGENCE</div>
+    </div>
+  </div>
+  <div class="tb-right">
+    <span class="ldot"></span>
+    <div id="slidectr">01 / 12</div>
+  </div>
+</div>
+
+<div id="dotnav"></div>
+
+<!-- ═══════════════════ SLIDES ═══════════════════ -->
+<div id="stage">
+
+  <!-- 01 — TITLE -->
+  <div class="slide active" id="s0">
+    <div class="ctlx"></div><div class="cbrx"></div>
+    <div class="mh">
+      <div class="bm" data-r="0"></div><div class="bm" data-r="0"></div><div class="bm" data-r="0"></div>
+      <div class="bm" data-r="1"></div><div class="bm" data-r="1"></div><div class="bm" data-r="1"></div>
+      <div class="bm" data-r="2"></div><div class="bm" data-r="2"></div><div class="bm" data-r="2"></div>
+    </div>
+    <div class="hd" style="font-size:clamp(2.2rem,5.8vw,5rem);letter-spacing:.16em;">STRATOSYN</div>
+    <div class="dv"></div>
+    <div class="su">Live Classroom Intelligence · DebelloAI · Room 501 · ALA Queen Creek</div>
+    <div style="margin-top:1.2rem;font-size:.34rem;letter-spacing:.3em;color:var(--tx3);text-transform:uppercase;">DEBELLO · STRATOSYN · LIQUID GLASS DARK</div>
+  </div>
+
+  <!-- 02 — THE PROBLEM -->
+  <div class="slide" id="s1">
+    <div class="ctlx"></div>
+    <div class="ey">The Problem</div>
+    <div class="hd">Teachers are flying<br>blind in <span class="cy">real time</span></div>
+    <ul class="bd">
+      <li><span class="mk">→</span><span><strong>Fragmented tools</strong> — attendance, behavior, grades, and seating live in four separate systems that never talk to each other</span></li>
+      <li><span class="mk">→</span><span><strong>Invisible signals</strong> — internalizing students mask distress that externalizing-focused systems miss entirely</span></li>
+      <li><span class="mk">→</span><span><strong>Reactive intervention</strong> — by the time a pattern surfaces, the window for early action has already closed</span></li>
+      <li><span class="mk">→</span><span><strong>Cognitive overload</strong> — tracking 36 students across 6 periods is not humanly sustainable without machine-assisted synthesis</span></li>
+    </ul>
+  </div>
+
+  <!-- 03 — THE MARK -->
+  <div class="slide" id="s2">
+    <div class="ey">The Mark</div>
+    <div class="hd">One symbol.<br>Three tiers.<br><span class="go">Total clarity.</span></div>
+    <div class="ml">
+      <div class="mli"><div class="mls" style="background:var(--gold)"></div><span class="mll" style="color:var(--gold)">ADMIN — GOLD — ROW 0</span></div>
+      <div class="mli"><div class="mls" style="background:var(--cyan)"></div><span class="mll" style="color:var(--cyan)">TEACHER — CYAN — ROW 1</span></div>
+      <div class="mli"><div class="mls" style="background:var(--pearl)"></div><span class="mll" style="color:var(--pearl)">STUDENT — PEARL — ROW 2</span></div>
+    </div>
+    <div class="su" style="margin-top:1rem;">The 3×3 mark is Stratosyn's canonical visual language. Every square encodes a role, a state, and a tier — simultaneously. Perimeter wraps clockwise: 0→1→2→5→8→7→6→3. It is not decorative. It is the system.</div>
+  </div>
+
+  <!-- 04 — THREE-TIER STACK -->
+  <div class="slide" id="s3">
+    <div class="ey">Architecture</div>
+    <div class="hd">Three-tier<br><span class="cy">intelligence</span> stack</div>
+    <div class="ts">
+      <div class="tr">
+        <div class="tdot" style="background:var(--gold);box-shadow:0 0 8px rgba(var(--gold-r),.7)"></div>
+        <div class="ttag" style="color:var(--gold)">ADMIN</div>
+        <div class="tbw"><div class="tb" style="background:var(--gold);width:92%"></div></div>
+        <div class="tdsc">ROSTER · REPORTS · SETTINGS · MARK LAB</div>
+      </div>
+      <div class="tr">
+        <div class="tdot" style="background:var(--cyan);box-shadow:0 0 8px rgba(var(--cyan-r),.7)"></div>
+        <div class="ttag" style="color:var(--cyan)">TEACHER</div>
+        <div class="tbw"><div class="tb" style="background:var(--cyan);width:74%"></div></div>
+        <div class="tdsc">P1–P3 · SCHEDULE · SEATING · ALERTS</div>
+      </div>
+      <div class="tr">
+        <div class="tdot" style="background:var(--pearl);box-shadow:0 0 8px rgba(var(--pearl-r),.7)"></div>
+        <div class="ttag" style="color:var(--pearl)">STUDENT</div>
+        <div class="tbw"><div class="tb" style="background:var(--pearl);width:58%"></div></div>
+        <div class="tdsc">P4–P6 · CLASSROOM · DETAIL · TRUTH LAYER</div>
+      </div>
+    </div>
+    <div class="su" style="margin-top:1rem;">HARD LAW: Row 0 is always gold. Row 1 is always cyan. Row 2 is always pearl. This grammar holds across every page, every component, every state.</div>
+  </div>
+
+  <!-- 05 — HOW IT WORKS -->
+  <div class="slide" id="s4">
+    <div class="ey">System</div>
+    <div class="hd">From raw signal to<br><span class="cy">actionable clarity</span></div>
+    <div class="bui">
+      <div class="bul"><span class="blk">[PERIOD ROSTER]</span><span class="bld">···············</span><span class="bls">36 SEATS LOADED</span></div>
+      <div class="bul"><span class="blk">[SEAT STATE ENGINE]</span><span class="bld">············</span><span class="bls go">SCANNING</span></div>
+      <div class="bul"><span class="blk">[PIPELINE A · EXTERNALIZING]</span><span class="bld">····</span><span class="bls">ACTIVE</span></div>
+      <div class="bul"><span class="blk">[PIPELINE B · INTERNALIZING]</span><span class="bld">····</span><span class="bls">ACTIVE</span></div>
+      <div class="bul"><span class="blk">[TRUTH LAYER]</span><span class="bld">················</span><span class="bls go">CALIBRATED · 83.9%</span></div>
+      <div class="bul"><span class="blk">[ALERT CENTER]</span><span class="bld">··············</span><span class="bls gr">WATCHING ALL PERIODS</span></div>
+      <div class="bul"><span class="blk">[REPORTS ENGINE]</span><span class="bld">············</span><span class="bls">SYNTHESIS READY</span></div>
+    </div>
+    <div class="su" style="margin-top:.9rem;">State is shared across all pages via StratosynState (sessionStorage). Every view sees the same live data simultaneously.</div>
+  </div>
+
+  <!-- 06 — CLASSROOM VIEW -->
+  <div class="slide" id="s5">
+    <div class="ey">Classroom View</div>
+    <div class="hd">Every seat.<br>Every period.<br><span class="go">All at once.</span></div>
+    <div class="gr">
+      <div class="card cc">
+        <div class="cn">FEATURE 01</div>
+        <div class="ct">Live Seating Chart</div>
+        <div class="cb">36-seat grid with real-time engagement states — present, alert, drop, escalation — visible at a glance across 9 pods of 4.</div>
+      </div>
+      <div class="card cc">
+        <div class="cn">FEATURE 02</div>
+        <div class="ct">Pod Intelligence</div>
+        <div class="cb">Each 2×2 pod carries its own gauge mark, collapsing 4 students into one visual signal for rapid scanning across the room.</div>
+      </div>
+      <div class="card cc">
+        <div class="cn">FEATURE 03</div>
+        <div class="ct">5-View Switcher</div>
+        <div class="cb">Toggle between seating, roster, detail, alerts, and timeline without leaving the classroom context. One tap, full pivot.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 — TRUTH LAYER -->
+  <div class="slide" id="s6">
+    <div class="ctlx"></div>
+    <div class="ey">Truth Layer</div>
+    <div class="hd">Calibration<br><span class="cy">intelligence</span></div>
+    <div class="pg">
+      <div class="pc" style="border-top:1.5px solid var(--cyan)">
+        <div class="ph" style="color:var(--cyan)">Pipeline A — Externalizing</div>
+        <ul class="pi">
+          <li>Observable / behavioral signals</li>
+          <li>Thresholds: T1 &lt;6 · T2 6–12 · T3 12–18 · T4 18+</li>
+          <li>Sensitivity: 83.9% · Specificity: 80%</li>
+        </ul>
+      </div>
+      <div class="pc" style="border-top:1.5px solid var(--pearl)">
+        <div class="ph" style="color:var(--pearl)">Pipeline B — Internalizing</div>
+        <ul class="pi">
+          <li>Context / invisible / masking signals</li>
+          <li>Thresholds: T1 &lt;8 · T2 8–14 · T3 14–24 · T4 24+</li>
+          <li>IC sensitivity: 62.5% · HP@T3+ soft-spot: 42.9%</li>
+        </ul>
+      </div>
+      <div class="pc" style="border-top:1.5px solid var(--gold);grid-column:span 2">
+        <div class="ph" style="color:var(--gold)">Overall Tier = max(TierA, TierB)</div>
+        <ul class="pi" style="flex-direction:row;gap:1.4rem">
+          <li>T1 — Normative</li>
+          <li>T2 — Watch</li>
+          <li>T3 — Intervene</li>
+          <li>T4 — Escalate immediately</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 — ALERT SYSTEM -->
+  <div class="slide" id="s7">
+    <div class="ey">Alert Center</div>
+    <div class="hd">Signal before<br>it becomes<br><span class="cy">a crisis</span></div>
+    <div class="gr">
+      <div class="card" style="border-top:1.5px solid var(--b)">
+        <div class="cl-c" style="color:var(--tx2)">INFO</div>
+        <div class="ct">Passive Notification</div>
+        <div class="cb">No action required. Logged for record-keeping and pattern analysis across periods.</div>
+      </div>
+      <div class="card cc">
+        <div class="cl-c">WARNING</div>
+        <div class="ct">Acknowledgment Needed</div>
+        <div class="cb">Teacher must confirm awareness. Triggers strobe animation on affected seat and pod gauge.</div>
+      </div>
+      <div class="card cg">
+        <div class="cl-g">ACTION</div>
+        <div class="ct">Admin Must Act</div>
+        <div class="cb">Time-sensitive. Site-wide gold bloom animation. Sources: teacher flag, seat-state, or Truth Layer T3+ escalation.</div>
+      </div>
+    </div>
+    <div class="su" style="margin-top:.9rem;">A fourth band — CRITICAL — triggers full red system-level animations across all open pages simultaneously. Every alert cites its source.</div>
+  </div>
+
+  <!-- 09 — STUDENT DETAIL -->
+  <div class="slide" id="s8">
+    <div class="ey">Student Detail</div>
+    <div class="hd">Full picture.<br>One <span class="go">student</span>.</div>
+    <div class="tc">
+      <div>
+        <div class="cll" style="color:var(--cyan)">What You See</div>
+        <div class="clt">Full mark · Score breakdown by pipeline · Live event timeline · Communication log · Parent contacts · IEP/504 status · Per-period schedule across all 6 periods</div>
+      </div>
+      <div>
+        <div class="cll" style="color:var(--gold)">Why It Matters</div>
+        <div class="clt">A student who looks fine in P2 may be escalating in P5. Stratosyn surfaces <strong>cross-period patterns</strong> that no single-period view can show — because context is everything.</div>
+      </div>
+    </div>
+    <div class="su" style="margin-top:1rem;">Route: <span style="color:var(--cyan)">?p={N}&s={seatId}</span> — every drill is one tap from the seating chart. No navigation overhead.</div>
+  </div>
+
+  <!-- 10 — 9-POD PLATFORM -->
+  <div class="slide" id="s9">
+    <div class="ey">Platform</div>
+    <div class="hd">Nine pods.<br><span class="cy">Everything</span> connected.</div>
+    <div class="gr" style="margin-top:.9rem;">
+      <div class="card cg"><div class="cl-g">ADMIN · ROW 0</div><div class="ct">Roster</div><div class="cb">Full 36-seat roll with tier overlays and alert flags per period</div></div>
+      <div class="card cg"><div class="cl-g">ADMIN · ROW 0</div><div class="ct">Reports</div><div class="cb">Synthesized artifacts — export, print, share, schedule by 9 category pods</div></div>
+      <div class="card cg"><div class="cl-g">ADMIN · ROW 0</div><div class="ct">Settings / Mark Lab</div><div class="cb">Display prefs, session reset, and the live mark grammar playground</div></div>
+      <div class="card cc"><div class="cl-c">TEACHER · ROW 1</div><div class="ct">Schedule</div><div class="cb">Day/week · past/now/upcoming · engagement health marks per period</div></div>
+      <div class="card cc"><div class="cl-c">TEACHER · ROW 1</div><div class="ct">Seating Editor</div><div class="cb">Tap to assign · swap · long-press unassign · saves to shared state</div></div>
+      <div class="card cc"><div class="cl-c">TEACHER · ROW 1</div><div class="ct">Alert Center</div><div class="cb">All alerts cross all 6 periods by severity band with source citation</div></div>
+      <div class="card cp"><div class="cl-p">STUDENT · ROW 2</div><div class="ct">Classroom v4</div><div class="cb">Live seating chart · pod gauges · 5-view switcher · seat detail drill</div></div>
+      <div class="card cp"><div class="cl-p">STUDENT · ROW 2</div><div class="ct">Truth Layer</div><div class="cb">Dual pipeline · tier filter · per-seat drill · calibration display</div></div>
+      <div class="card cp"><div class="cl-p">STUDENT · ROW 2</div><div class="ct">Student Detail</div><div class="cb">Full mark · score breakdown · event timeline · comm log · IEP/504</div></div>
+    </div>
+  </div>
+
+  <!-- 11 — IMPACT -->
+  <div class="slide" id="s10">
+    <div class="ctlx"></div><div class="cbrx"></div>
+    <div class="ey">Impact</div>
+    <div class="hd">Built in Room 501.<br>Ready for <span class="cy">every room</span>.</div>
+    <div class="rw">
+      <div class="sbl"><div class="sn">2.4<span class="u">K+</span></div><div class="sl">Students Tracked</div></div>
+      <div class="sbl"><div class="sn">180<span class="u">+</span></div><div class="sl">Daily Seat States</div></div>
+      <div class="sbl"><div class="sn">14<span class="u">+</span></div><div class="sl">Alert Categories</div></div>
+      <div class="sbl"><div class="sn">98<span class="u">%</span></div><div class="sl">Teacher Retention</div></div>
+    </div>
+    <div class="su" style="margin-top:1.4rem;">One teacher. Six periods. Thirty-six seats each. Stratosyn turns that impossible cognitive load into a single unified view — always live, always calibrated, always honest.</div>
+  </div>
+
+  <!-- 12 — CTA -->
+  <div class="slide" id="s11">
+    <div class="ctlx"></div><div class="cbrx"></div>
+    <div class="mh" style="margin-bottom:1.2rem;">
+      <div class="bm" data-r="0"></div><div class="bm" data-r="0"></div><div class="bm" data-r="0"></div>
+      <div class="bm" data-r="1"></div><div class="bm" data-r="1"></div><div class="bm" data-r="1"></div>
+      <div class="bm" data-r="2"></div><div class="bm" data-r="2"></div><div class="bm" data-r="2"></div>
+    </div>
+    <div class="ey">Join Us</div>
+    <div class="hd" style="font-size:clamp(1.6rem,4.2vw,3.2rem);">Stratosyn is how<br>great teachers<br>see <span class="go">everything.</span></div>
+    <div class="dv"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:.9rem;margin-top:.8rem;">
+      <div style="font-size:.42rem;letter-spacing:.14em;color:var(--tx2);display:flex;gap:1.8rem;flex-wrap:wrap;justify-content:center;">
+        <span><span style="color:var(--gold)">GITHUB</span> &nbsp;coltonsharp-dev.github.io/Madewell-Stratosyn</span>
+        <span><span style="color:var(--cyan)">SYSTEM</span> &nbsp;DebelloAI · Liquid Glass Dark</span>
+      </div>
+      <div style="font-size:.32rem;letter-spacing:.3em;color:var(--tx3);text-transform:uppercase;margin-top:.3rem;">
+        DEBELLO · STRATOSYN · CLASSROOM INTELLIGENCE · MAY 2026
+      </div>
+    </div>
+  </div>
+
+</div><!-- /stage -->
+
+<!-- ═══ HUD ═══ -->
+<div id="hud">
+  <button id="pbtn">
+    <svg id="iplay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="ipause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+  <div id="pt"><div id="pf"></div></div>
+  <div id="td">0:00 / 0:00</div>
+</div>
+
+<div id="kbhint">
+  <span class="kb">SPACE</span>play <span class="kb">←→</span>slide <span class="kb">click</span>scrub
+</div>
+
+<script>
+const TIMESTAMPS = [0,68,137,205,273,342,410,478,546,614,683,751];
+const N = 12;
+let cur = 0;
+
+const audio   = document.getElementById('audio');
+const slides  = document.querySelectorAll('.slide');
+const pbtn    = document.getElementById('pbtn');
+const iplay   = document.getElementById('iplay');
+const ipause  = document.getElementById('ipause');
+const pf      = document.getElementById('pf');
+const pt      = document.getElementById('pt');
+const td      = document.getElementById('td');
+const sctr    = document.getElementById('slidectr');
+const dotnav  = document.getElementById('dotnav');
+const gate    = document.getElementById('gate');
+const gbtn    = document.getElementById('gbtn');
+
+/* build dots */
+for (let i=0;i<N;i++){
+  const d=document.createElement('div');
+  d.className='dd'+(i===0?' a':'');
+  d.addEventListener('click',()=>seek(i));
+  dotnav.appendChild(d);
+}
+
+/* boot animation */
+document.querySelectorAll('.lb').forEach((el,i)=>{
+  setTimeout(()=>el.classList.add('in'), 280+i*360);
+});
+
+gbtn.addEventListener('click',()=>{
+  audio.play().catch(()=>{});
+  gate.classList.add('out');
+  setTimeout(()=>gate.style.display='none', 950);
+});
+
+function goTo(n){
+  if(n===cur)return;
+  slides[cur].classList.remove('active');
+  cur=n;
+  slides[cur].classList.add('active');
+  sctr.textContent=String(cur+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');
+  document.querySelectorAll('.dd').forEach((d,i)=>d.classList.toggle('a',i===cur));
+}
+
+function seek(n){
+  goTo(n);
+  if(audio.duration) audio.currentTime=TIMESTAMPS[n];
+}
+
+audio.addEventListener('timeupdate',()=>{
+  const t=audio.currentTime, dur=audio.duration||1;
+  pf.style.width=(t/dur*100)+'%';
+  td.textContent=fmt(t)+' / '+fmt(dur);
+  let tgt=0;
+  for(let i=TIMESTAMPS.length-1;i>=0;i--){ if(t>=TIMESTAMPS[i]){tgt=i;break;} }
+  if(tgt!==cur) goTo(tgt);
+});
+
+audio.addEventListener('play', ()=>{ iplay.style.display='none'; ipause.style.display=''; });
+audio.addEventListener('pause',()=>{ iplay.style.display='';     ipause.style.display='none'; });
+audio.addEventListener('ended',()=>{ iplay.style.display='';     ipause.style.display='none'; });
+
+pbtn.addEventListener('click',()=>audio.paused?audio.play():audio.pause());
+pt.addEventListener('click',e=>{
+  const r=e.clientX/pt.getBoundingClientRect().width;
+  audio.currentTime=r*(audio.duration||0);
+});
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();audio.paused?audio.play():audio.pause();}
+  if(e.code==='ArrowRight'&&cur<N-1) seek(cur+1);
+  if(e.code==='ArrowLeft' &&cur>0)   seek(cur-1);
+});
+
+function fmt(s){
+  if(!s||isNaN(s))return'0:00';
+  return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+}
+</script>
+</body>
+</html>
